@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
     <title>Checklist Geologia&Proespeccao</title>
     <style>
@@ -380,6 +379,7 @@
                 <li><a href="#" data-checklist="sondaDb520" aria-label="Checklist para Sonda DB520">SONDA DB520</a></li>
                 <li><a href="#" data-checklist="sondaRotativa" aria-label="Checklist para Sonda Rotativa">SONDA
                         ROTATIVA</a></li>
+
             </ul>
         </nav>
     </div>
@@ -399,7 +399,7 @@
                     </tr>
                     <tr>
                         <td>DATA</td>
-                        <td><input type="date" id="datePicker"></td>
+                        <td><input type="date" class="datePicker"></td>
                     </tr>
                     <tr>
                         <td>REV.</td>
@@ -694,7 +694,7 @@
                     </tr>
                     <tr>
                         <td>DATA</td>
-                        <td><input type="date" id="datePicker"></td>
+                        <td><input type="date" class="datePicker"></td>
                     </tr>
                     <tr>
                         <td>REV.</td>
@@ -921,7 +921,7 @@
                     </tr>
                     <tr>
                         <td>DATA</td>
-                        <td><input type="date" id="datePicker"></td>
+                        <td><input type="date" class="datePicker"></td>
                     </tr>
                     <tr>
                         <td>REV.</td>
@@ -1215,7 +1215,7 @@
                     </tr>
                     <tr>
                         <td>DATA</td>
-                        <td><input type="date" id="datePicker"></td>
+                        <td><input type="date" class="datePicker"></td>
                     </tr>
                     <tr>
                         <td>REV.</td>
@@ -1503,7 +1503,7 @@
                     </tr>
                     <tr>
                         <td>DATA</td>
-                        <td><input type="date" id="datePicker"></td>
+                        <td><input type="date" class="datePicker"></td>
                     </tr>
                     <tr>
                         <td>REV.</td>
@@ -1764,31 +1764,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(function(registration) {
-        console.log('Service Worker registrado con alcance:', registration.scope);
+        let deferredPrompt;
+        const installButton = document.getElementById('installButton');
 
-        registration.onupdatefound = function() {
-          const installingWorker = registration.installing;
-          installingWorker.onstatechange = function() {
-            if (installingWorker.state === 'installed') {
-              if (navigator.serviceWorker.controller) {
-                // Nueva versión de la PWA disponible, recargar la página o mostrar notificación
-                console.log('Nueva versión disponible. Recarga la página.');
-                window.location.reload();
-              }
-            }
-          };
-        };
-      })
-      .catch(function(error) {
-        console.error('Registro de Service Worker fallido:', error);
-      });
-  }
-</script>
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Previene que el evento automático de instalación ocurra
+            e.preventDefault();
+            // Guarda el evento para usarlo después
+            deferredPrompt = e;
+            // Muestra el botón de instalación
+            installButton.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', (e) => {
+            // Oculta el botón de instalación
+            installButton.style.display = 'none';
+            // Muestra el prompt de instalación
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('El usuario aceptó la instalación');
+                } else {
+                    console.log('El usuario rechazó la instalación');
+                }
+                deferredPrompt = null;
+            });
+        });
+
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA instalada con éxito');
+        });
+    </script>
 
 
+    <script>
+        const datePickers = document.querySelectorAll('.datePicker');
+
+        // Obtener la fecha actual del dispositivo en el formato YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+
+        // Establecer la fecha actual como el valor predeterminado en todos los inputs de fecha
+        datePickers.forEach(datePicker => {
+            datePicker.value = today;
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Función para manejar tanto clics como toques
@@ -1883,13 +1902,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-        <div style="display: flex; align-items: center;">
-            <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1; text-decoration: solid;">
-                HORIMETRO
-            </div>
-            <input type="number" id="horimetrosInput0" class="input-style">
+    <div style="display: flex; align-items: center;">
+        <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1; text-decoration: solid;">
+            HORIMETRO
         </div>
-    `;
+        <input type="number" id="horimetrosInput0" class="input-style">
+    </div>
+`;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1897,9 +1916,9 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-            <div style="display: flex; align-items: center;"></div>
-            <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
-        `;
+        <div style="display: flex; align-items: center;"></div>
+        <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
+    `;
                 row.appendChild(cell);
             }
 
@@ -1915,30 +1934,30 @@
             const conductorCell = document.createElement('td');
             conductorCell.className = 'first-column';
             conductorCell.innerHTML = `
-        <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
-            <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
-                <option value="Conductor">Condutor</option>
-                <option value="Ildoson Almeida">Ildoson Almeida</option>
-                <option value="Ivanildo Santarém">Ivanildo Santarém</option>
-                <option value="Lecindio Soares">Lecindio Soares</option>
-                <option value="Vaga Auxiliar">Vaga Auxiliar</option>
-                <option value="Wilson Silva">Wilson Silva</option>
-                <option value="Auricélio Santana">Auricélio Santana</option>
-                <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
-                <option value="Diego Pinheiro">Diego Pinheiro</option>
-                <option value="Edenilson Alves">Edenilson Alves</option>
-                <option value="Erick Lima">Erick Lima</option>
-                <option value="Ericson Souza">Ericson Souza</option>
-                <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
-                <option value="Rodolfo">Rodolfo</option>
-            </select>
-            <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
-        </div>
-        <div style="height: 10%; padding: 15px;">
-            <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
-            <input type="text" id="chapa-${formId}" />
-        </div>
-    `;
+    <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
+        <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
+            <option value="Conductor">Conductor</option>
+            <option value="Ildoson Almeida">Ildoson Almeida</option>
+            <option value="Ivanildo Santarém">Ivanildo Santarém</option>
+            <option value="Lecindio Soares">Lecindio Soares</option>
+            <option value="Vaga Auxiliar">Vaga Auxiliar</option>
+            <option value="Wilson Silva">Wilson Silva</option>
+            <option value="Auricélio Santana">Auricélio Santana</option>
+            <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
+            <option value="Diego Pinheiro">Diego Pinheiro</option>
+            <option value="Edenilson Alves">Edenilson Alves</option>
+            <option value="Erick Lima">Erick Lima</option>
+            <option value="Ericson Souza">Ericson Souza</option>
+            <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
+            <option value="Rodolfo">Rodolfo</option>
+        </select>
+        <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
+    </div>
+    <div style="height: 10%; padding: 15px;">
+        <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
+        <input type="text" id="chapa-${formId}" />
+    </div>
+`;
             return conductorCell;
         }
 
@@ -1954,13 +1973,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-        <div style="display: flex; align-items: center;">
-            <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1;">
-                HORIMETRO
-            </div>
-            <input type="number" id="horimetrosInput0-${formId}" class="input-style">
+    <div style="display: flex; align-items: center;">
+        <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1;">
+            HORIMETRO
         </div>
-    `;
+        <input type="number" id="horimetrosInput0-${formId}" class="input-style">
+    </div>
+`;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1968,8 +1987,8 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-            <input type="text" id="horimetrosInput${i + 1}-${formId}" style="writing-mode: vertical-rl; text-align: center;">
-        `;
+        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="writing-mode: vertical-rl; text-align: center;">
+    `;
                 row.appendChild(cell);
             }
 
@@ -2067,13 +2086,13 @@
                     '4': '4. REQUISITO DE MANUTENÇÃO (verificar visualmente ausência de quebras, folgas, trincas e vazamentos)'
                 };
 
-                // Si es un nuevo número de sección, agregamos un título separador
+                // Si es una nueva sección, agregar un título de sección
                 if (currentSection !== sectionNumber) {
                     currentSection = sectionNumber;
                     const titleRow = document.createElement('tr');
                     const titleCell = document.createElement('td');
                     titleCell.colSpan = 32; // Abarca todas las columnas
-                    titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Access the value of the property using the sectionNumber
+                    titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Mostrar el título de la sección
                     titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
                     titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
                     titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
@@ -2084,19 +2103,23 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem
+                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
                 const itemCell = document.createElement('td');
+                itemCell.className = 'item-column';
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
-                itemCell.style.fontSize = '12px'; // Ajustar el tamaño de fuente
+                itemCell.style.position = 'sticky'; // Hacer sticky
+                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
+                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
                 for (let day = 1; day <= 31; day++) {
                     const dayCell = document.createElement('td');
+                    dayCell.className = 'day-column'; // Usar clase CSS para el ancho fijo
                     const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
-                    checkbox.id = `day${day}-item${itemIndex + 1}`;  // ID único
+                    checkbox.id = `day${day}-item${itemIndex + 1}`; // ID único
                     dayCell.appendChild(checkbox);
                     row.appendChild(dayCell);
                 }
@@ -2214,11 +2237,14 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo
+                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
                 const itemCell = document.createElement('td');
                 itemCell.className = 'item-column';
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
+                itemCell.style.position = 'sticky'; // Hacer sticky
+                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
+                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
@@ -2235,6 +2261,10 @@
                 checklistBody.appendChild(row);
             });
         }
+
+        // Llamar a la función para generar la tabla
+        generateChecklistCompressorTable();
+
 
         // Llamar a las funciones para generar las filas
         generateChecklistCompressorTable();
@@ -2346,11 +2376,14 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo
+                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
                 const itemCell = document.createElement('td');
                 itemCell.className = 'item-column';
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
+                itemCell.style.position = 'sticky'; // Hacer sticky
+                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
+                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
@@ -2482,11 +2515,14 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo
+                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
                 const itemCell = document.createElement('td');
                 itemCell.className = 'item-column';
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
+                itemCell.style.position = 'sticky'; // Hacer sticky
+                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
+                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
