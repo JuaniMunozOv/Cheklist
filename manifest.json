@@ -1,7 +1,7 @@
 {
     "name": "Checklist",
     "short_name": "Checklist",
-    "start_url": "checklistgeologia&proespeccao.html",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
