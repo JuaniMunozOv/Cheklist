@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
     <title>Checklist Geologia&Proespeccao</title>
     <style>
         body {
@@ -186,7 +185,11 @@
 
         .table-container {
             overflow-x: auto;
-            /* Permite desplazar la tabla horizontalmente en dispositivos móviles */
+            /* Permite desplazar la tabla horizontalmente en todas las pantallas */
+            width: 100%;
+            /* Asegura que la tabla ocupe todo el ancho del contenedor */
+            position: relative;
+            /* Necesario para el posicionamiento sticky */
         }
 
         .table-container table {
@@ -204,6 +207,20 @@
             padding: 8px;
             font-size: 12px;
             /* Aumentado el tamaño de fuente para mejorar legibilidad en dispositivos móviles */
+        }
+
+        /* Aplicar la clase sticky-column a la primera columna */
+        .sticky-column {
+            position: sticky;
+            /* Hace la columna "pegajosa" */
+            left: 0;
+            /* La mantiene pegada a la izquierda */
+            background-color: white;
+            /* Fondo blanco para evitar superposición de contenido */
+            z-index: 100;
+            /* Asegura que la columna sticky esté por encima de otras celdas */
+            border-right: 1px solid black;
+            /* Añade un borde a la derecha para diferenciar la columna */
         }
 
         .signature-container {
@@ -379,7 +396,6 @@
                 <li><a href="#" data-checklist="sondaDb520" aria-label="Checklist para Sonda DB520">SONDA DB520</a></li>
                 <li><a href="#" data-checklist="sondaRotativa" aria-label="Checklist para Sonda Rotativa">SONDA
                         ROTATIVA</a></li>
-
             </ul>
         </nav>
     </div>
@@ -541,8 +557,8 @@
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
                     <canvas id="signatureCanvascamionSonda" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignaturecamionSonda()">Limpo</button>
-                    <button onclick="saveSignaturecamionSonda()">Salvar assinatura</button>
+                    <button onclick="clearSignaturecamionSonda()">Limpiar</button>
+                    <button onclick="saveSignaturecamionSonda()">Guardar Firma</button>
                 </div>
             </div>
 
@@ -746,7 +762,7 @@
                         <div style="height: 10%; border-bottom: 1px solid black; padding: 5px;">
                             <select id="conductorAuto" style="width: 50%; margin-top: 5px;"
                                 onchange="updateConductorName('conductorAuto', 'selectedConductorAuto')">
-                                <option value="Conductor">Condutor</option>
+                                <option value="Conductor">Conductor</option>
                                 <option value="Ildoson Almeida">Ildoson Almeida</option>
                                 <option value="Ivanildo Santarém">Ivanildo Santarém</option>
                                 <option value="Lecindio Soares">Lecindio Soares</option>
@@ -810,8 +826,8 @@
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
                     <canvas id="signatureCanvasAutocond" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignatureAutocond()">Limpo</button>
-                    <button onclick="saveSignatureAutocond()">Salvar assinatura</button>
+                    <button onclick="clearSignatureAutocond()">Limpiar</button>
+                    <button onclick="saveSignatureAutocond()">Guardar Firma</button>
 
                 </div>
             </div>
@@ -822,8 +838,8 @@
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
                     <canvas id="signatureCanvasAutoAvaliacaosuper" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignatureAutoAvaliacaosuper()">Limpo</button>
-                    <button onclick="saveSignatureAutoAvaliacaosuper()">Salvar assinatura</button>
+                    <button onclick="clearSignatureAutoAvaliacaosuper()">Limpiar</button>
+                    <button onclick="saveSignatureAutoAvaliacaosuper()">Guardar Firma</button>
 
                 </div>
             </div>
@@ -1044,8 +1060,8 @@
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
                     <canvas id="signatureCanvasCompressor" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignatureCompressor()">Limpo</button>
-                    <button onclick="saveSignatureCompressor()">Salvar assinatura</button>
+                    <button onclick="clearSignatureCompressor()">Limpiar</button>
+                    <button onclick="saveSignatureCompressor()">Guardar Firma</button>
                 </div>
             </div>
 
@@ -1335,8 +1351,8 @@
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
                     <canvas id="signatureCanvasSonda" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignatureSonda()">Limpo</button>
-                    <button onclick="saveSignatureSonda()">Salvar assinatura</button>
+                    <button onclick="clearSignatureSonda()">Limpiar</button>
+                    <button onclick="saveSignatureSonda()">Guardar Firma</button>
 
                 </div>
             </div>
@@ -1626,8 +1642,8 @@
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
                     <canvas id="signatureCanvasSondaRotativa" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignatureSondaRotativa()">Limpo</button>
-                    <button onclick="saveSignatureSondaRotativa()">Salvar assinatura</button>
+                    <button onclick="clearSignatureSondaRotativa()">Limpiar</button>
+                    <button onclick="saveSignatureSondaRotativa()">Guardar Firma</button>
 
                 </div>
             </div>
@@ -1764,40 +1780,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
-        let deferredPrompt;
-        const installButton = document.getElementById('installButton');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Previene que el evento automático de instalación ocurra
-            e.preventDefault();
-            // Guarda el evento para usarlo después
-            deferredPrompt = e;
-            // Muestra el botón de instalación
-            installButton.style.display = 'block';
-        });
-
-        installButton.addEventListener('click', (e) => {
-            // Oculta el botón de instalación
-            installButton.style.display = 'none';
-            // Muestra el prompt de instalación
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('El usuario aceptó la instalación');
-                } else {
-                    console.log('El usuario rechazó la instalación');
-                }
-                deferredPrompt = null;
-            });
-        });
-
-        window.addEventListener('appinstalled', (evt) => {
-            console.log('PWA instalada con éxito');
-        });
-    </script>
-
-
-    <script>
         const datePickers = document.querySelectorAll('.datePicker');
 
         // Obtener la fecha actual del dispositivo en el formato YYYY-MM-DD
@@ -1902,13 +1884,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-    <div style="display: flex; align-items: center;">
-        <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1; text-decoration: solid;">
-            HORIMETRO
+        <div style="display: flex; align-items: center;">
+            <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1; text-decoration: solid;">
+                HORIMETRO
+            </div>
+            <input type="number" id="horimetrosInput0" class="input-style">
         </div>
-        <input type="number" id="horimetrosInput0" class="input-style">
-    </div>
-`;
+    `;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1916,9 +1898,9 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-        <div style="display: flex; align-items: center;"></div>
-        <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
-    `;
+            <div style="display: flex; align-items: center;"></div>
+            <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
+        `;
                 row.appendChild(cell);
             }
 
@@ -1934,30 +1916,30 @@
             const conductorCell = document.createElement('td');
             conductorCell.className = 'first-column';
             conductorCell.innerHTML = `
-    <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
-        <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
-            <option value="Conductor">Conductor</option>
-            <option value="Ildoson Almeida">Ildoson Almeida</option>
-            <option value="Ivanildo Santarém">Ivanildo Santarém</option>
-            <option value="Lecindio Soares">Lecindio Soares</option>
-            <option value="Vaga Auxiliar">Vaga Auxiliar</option>
-            <option value="Wilson Silva">Wilson Silva</option>
-            <option value="Auricélio Santana">Auricélio Santana</option>
-            <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
-            <option value="Diego Pinheiro">Diego Pinheiro</option>
-            <option value="Edenilson Alves">Edenilson Alves</option>
-            <option value="Erick Lima">Erick Lima</option>
-            <option value="Ericson Souza">Ericson Souza</option>
-            <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
-            <option value="Rodolfo">Rodolfo</option>
-        </select>
-        <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
-    </div>
-    <div style="height: 10%; padding: 15px;">
-        <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
-        <input type="text" id="chapa-${formId}" />
-    </div>
-`;
+        <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
+            <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
+                <option value="Conductor">Conductor</option>
+                <option value="Ildoson Almeida">Ildoson Almeida</option>
+                <option value="Ivanildo Santarém">Ivanildo Santarém</option>
+                <option value="Lecindio Soares">Lecindio Soares</option>
+                <option value="Vaga Auxiliar">Vaga Auxiliar</option>
+                <option value="Wilson Silva">Wilson Silva</option>
+                <option value="Auricélio Santana">Auricélio Santana</option>
+                <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
+                <option value="Diego Pinheiro">Diego Pinheiro</option>
+                <option value="Edenilson Alves">Edenilson Alves</option>
+                <option value="Erick Lima">Erick Lima</option>
+                <option value="Ericson Souza">Ericson Souza</option>
+                <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
+                <option value="Rodolfo">Rodolfo</option>
+            </select>
+            <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
+        </div>
+        <div style="height: 10%; padding: 15px;">
+            <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
+            <input type="text" id="chapa-${formId}" />
+        </div>
+    `;
             return conductorCell;
         }
 
@@ -1973,13 +1955,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-    <div style="display: flex; align-items: center;">
-        <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1;">
-            HORIMETRO
+        <div style="display: flex; align-items: center;">
+            <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1;">
+                HORIMETRO
+            </div>
+            <input type="number" id="horimetrosInput0-${formId}" class="input-style">
         </div>
-        <input type="number" id="horimetrosInput0-${formId}" class="input-style">
-    </div>
-`;
+    `;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1987,8 +1969,8 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="writing-mode: vertical-rl; text-align: center;">
-    `;
+            <input type="text" id="horimetrosInput${i + 1}-${formId}" style="writing-mode: vertical-rl; text-align: center;">
+        `;
                 row.appendChild(cell);
             }
 
@@ -2086,7 +2068,6 @@
                     '4': '4. REQUISITO DE MANUTENÇÃO (verificar visualmente ausência de quebras, folgas, trincas e vazamentos)'
                 };
 
-                // Si es una nueva sección, agregar un título de sección
                 if (currentSection !== sectionNumber) {
                     currentSection = sectionNumber;
                     const titleRow = document.createElement('tr');
@@ -2103,14 +2084,11 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
+                // Crear la celda del nombre del ítem con clase para el ancho fijo
                 const itemCell = document.createElement('td');
-                itemCell.className = 'item-column';
+                itemCell.className = 'item-column sticky-column'; // Añade la clase 'sticky-column' aquí
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
-                itemCell.style.position = 'sticky'; // Hacer sticky
-                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
@@ -2220,7 +2198,6 @@
                     '2': '2. REQUISITO DE MANUTENÇÃO'
                 };
 
-                // Si es una nueva sección, agregar un título de sección
                 if (currentSection !== sectionNumber) {
                     currentSection = sectionNumber;
                     const titleRow = document.createElement('tr');
@@ -2237,14 +2214,11 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
+                // Crear la celda del nombre del ítem con clase para el ancho fijo
                 const itemCell = document.createElement('td');
-                itemCell.className = 'item-column';
+                itemCell.className = 'item-column sticky-column'; // Añade la clase 'sticky-column' aquí
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
-                itemCell.style.position = 'sticky'; // Hacer sticky
-                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
@@ -2359,7 +2333,6 @@
                     '7': '7. Kit de emergência ambiental'
                 };
 
-                // Si es una nueva sección, agregar un título de sección
                 if (currentSection !== sectionNumber) {
                     currentSection = sectionNumber;
                     const titleRow = document.createElement('tr');
@@ -2376,14 +2349,11 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
+                // Crear la celda del nombre del ítem con clase para el ancho fijo
                 const itemCell = document.createElement('td');
-                itemCell.className = 'item-column';
+                itemCell.className = 'item-column sticky-column'; // Añade la clase 'sticky-column' aquí
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
-                itemCell.style.position = 'sticky'; // Hacer sticky
-                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
@@ -2498,7 +2468,6 @@
                     '8': '8. CARROSSEL'
                 };
 
-                // Si es una nueva sección, agregar un título de sección
                 if (currentSection !== sectionNumber) {
                     currentSection = sectionNumber;
                     const titleRow = document.createElement('tr');
@@ -2515,14 +2484,11 @@
 
                 const row = document.createElement('tr');
 
-                // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
+                // Crear la celda del nombre del ítem con clase para el ancho fijo
                 const itemCell = document.createElement('td');
-                itemCell.className = 'item-column';
+                itemCell.className = 'item-column sticky-column'; // Añade la clase 'sticky-column' aquí
                 itemCell.textContent = item.text;
                 itemCell.style.color = item.color; // Aplicar color dinámicamente
-                itemCell.style.position = 'sticky'; // Hacer sticky
-                itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-                itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
                 row.appendChild(itemCell);
 
                 // Crear las celdas de los días del mes
