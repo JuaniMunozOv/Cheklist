@@ -233,13 +233,27 @@ button {
 
 .input-style {
     writing-mode: vertical-rl;
-    flex: 1;
     text-align: center;
+    width: 40px;
+    /* Reducido el ancho de los inputs */
+    height: 60px;
+    /* Ajustar la altura para hacerlo más pequeño */
+    font-size: 10px;
+    /* Tamaño de texto reducido */
 }
 
+.day-column {
+    width: 60px;
+    /* Ajustar el ancho de las columnas de los días */
+    vertical-align: top;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.338);
+}
+
+
 .first-column {
-    width: 500px;
-    /* Ancho consistente con las otras columnas */
+    width: 180px;
+    /* Reducido de 500px a 180px */
     vertical-align: top;
     padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.338);
@@ -247,10 +261,27 @@ button {
 
 .first-column select,
 .first-column input[type="text"] {
-    width: 50%;
-    /* Ajusta el ancho de los elementos internos */
+    width: 100%;
+    /* Hacer que el select y el input ocupen el 100% de la celda */
     margin-top: 5px;
+    padding: 4px;
+    /* Reducir padding para ajustarse a un espacio más pequeño */
 }
+
+.first-column label {
+    font-size: 12px;
+    /* Ajustar el tamaño de la etiqueta */
+    margin-bottom: 5px;
+    /* Añadir espacio inferior a la etiqueta */
+}
+
+.first-column input[type="text"] {
+    font-size: 12px;
+    /* Reducir tamaño del texto del input */
+    height: 25px;
+    /* Ajustar la altura del input */
+}
+
 
 .item-column {
     width: 200px;
@@ -269,13 +300,7 @@ button {
     /* Para que esté por encima de otras columnas */
 }
 
-.day-column {
-    width: 200px;
-    /* Ancho fijo para las columnas de los días */
-    vertical-align: top;
-    padding: 0;
-    border: 1px solid rgba(0, 0, 0, 0.338);
-}
+
 
 @media print {
     .a4-page input {
