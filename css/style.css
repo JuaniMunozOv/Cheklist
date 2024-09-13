@@ -309,9 +309,7 @@ button {
         width: 30px;
         text-align: center;
         transform: rotate(-90deg);
-        /* Simula la escritura vertical */
-        transform-origin: left bottom;
-        /* Ajusta el origen de la rotación */
+        transform-origin: center;
     }
 
     .a4-page select,
@@ -326,6 +324,18 @@ button {
         transform-origin: left bottom;
         /* Ajusta el origen de la rotación */
     }
+
+    .a4-page td div {
+        transform: rotate(-90deg);
+        transform-origin: center;
+        font-size: 10px;
+        /* Ajusta el tamaño del texto según sea necesario */
+        white-space: nowrap;
+        /* Evita que el texto se corte o ajuste */
+        width: auto;
+        /* Ajusta el ancho automáticamente */
+    }
+
 }
 
 

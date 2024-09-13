@@ -1700,13 +1700,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-    <div style="display: flex; align-items: center;">
-        <div style="transform: rotate(-90deg); transform-origin: left bottom; flex: 1;">
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; margin-top: 30px;">
             HORIMETRO
         </div>
-        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="transform: rotate(-90deg); transform-origin: left bottom; text-align: center;">
+        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="width: 40px; height: 60px; text-align: center; margin-top: 10px;">
     </div>
-    `;
+`;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1714,7 +1714,7 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="transform: rotate(-90deg); transform-origin: left bottom; text-align: center; height: 80px; width: 15px;">
+        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="transform: rotate(-90deg); transform-origin: left bottom; text-align: center; height: 50px; width: 15px;">
     `;
                 row.appendChild(cell);
             }
@@ -1722,9 +1722,41 @@
             // Agregar la fila a la tabla
             const table = document.getElementById(tableId);
             table.appendChild(row);
+        } function generateRowWithInputs(tableId) {
+            const row = document.createElement('tr');
+
+            // Usar la función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
+            const conductorCell = createConductorChapaCell();
+            row.appendChild(conductorCell);
+
+            // Crear la primera celda con "HORARIOS" y el input
+            const firstInputCell = document.createElement('td');
+            firstInputCell.className = 'day-column';
+            firstInputCell.innerHTML = `
+       <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; margin-top: 30px;">
+            HORIMETRO
+        </div>
+        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="width: 40px; height: 60px; text-align: center; margin-top: 10px;">
+    </div>
+`;
+            row.appendChild(firstInputCell);
+
+            // Crear celdas de entrada restantes con alineación vertical
+            for (let i = 0; i < 30; i++) {
+                const cell = document.createElement('td');
+                cell.className = 'day-column';
+                cell.innerHTML = `
+            <div style="display: flex; align-items: center;"></div>
+            <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
+        `;
+                row.appendChild(cell);
+            }
+
+            // Agregar la fila a la tabla
+            const table = document.getElementById(tableId); // Reemplaza con tu ID de tabla
+            table.appendChild(row);
         }
-
-
 
 
         // Función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
@@ -1733,33 +1765,35 @@
             const conductorCell = document.createElement('td');
             conductorCell.className = 'first-column';
             conductorCell.innerHTML = `
-    <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
-        <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
-            <option value="Conductor">Conductor</option>
-            <option value="Ildoson Almeida">Ildoson Almeida</option>
-            <option value="Ivanildo Santarém">Ivanildo Santarém</option>
-            <option value="Lecindio Soares">Lecindio Soares</option>
-            <option value="Vaga Auxiliar">Vaga Auxiliar</option>
-            <option value="Wilson Silva">Wilson Silva</option>
-            <option value="Auricélio Santana">Auricélio Santana</option>
-            <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
-            <option value="Diego Pinheiro">Diego Pinheiro</option>
-            <option value="Edenilson Alves">Edenilson Alves</option>
-            <option value="Erick Lima">Erick Lima</option>
-            <option value="Ericson Souza">Ericson Souza</option>
-            <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
-            <option value="Rodolfo">Rodolfo</option>
-        </select>
-        <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
-    </div>
-    <div style="height: 90%;width: 80%; padding: 15px;">
-        <label for="chapa-${formId}" style="font-size: 14px;">CHAPA (Nº de Cracha):</label>
-        <input type="text" id="chapa-${formId}" style="font-size: 12px;height: 100%; width: 80%;"/>
-    </div>  
-`;
+        <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
+            <label for="conductor-${formId}">CONDUTOR:</label>
+            <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
+                <option value="Condutor"></option>
+                <option value="Ildoson Almeida">Ildoson Almeida</option>
+                <option value="Ivanildo Santarém">Ivanildo Santarém</option>
+                <option value="Lecindio Soares">Lecindio Soares</option>
+                <option value="Vaga Auxiliar">Vaga Auxiliar</option>
+                <option value="Wilson Silva">Wilson Silva</option>
+                <option value="Auricélio Santana">Auricélio Santana</option>
+                <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
+                <option value="Diego Pinheiro">Diego Pinheiro</option>
+                <option value="Edenilson Alves">Edenilson Alves</option>
+                <option value="Erick Lima">Erick Lima</option>
+                <option value="Ericson Souza">Ericson Souza</option>
+                <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
+                <option value="Rodolfo">Rodolfo</option>
+            </select>
+            <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
+        </div>
+        <div style="height: 10%; padding: 15px;">
+            <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
+            <input type="text" id="chapa-${formId}" />
+        </div>
+    `;
             return conductorCell;
         }
 
+        // Función para generar una fila con entradas
         function generateRowWithInputs(tableId, formId) {
             const row = document.createElement('tr');
 
@@ -1771,13 +1805,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-        <div style="display: flex; align-items: flex-end; justify-content: center; height: 100%; padding-bottom: 10px;">
-            <div style="writing-mode: vertical-rl; text-orientation: upright; transform: translateY(20px); flex: 1;">
-                HORIMETRO
-            </div>
-            <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="transform: translateY(20px); padding-bottom: 10px; text-align: right;">
+        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap;">
+            HORIMETRO
         </div>
-    `;
+        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="width: 40px; height: 60px; text-align: center; margin-top: 10px;">
+    </div>
+`;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1785,9 +1819,7 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-            <div style="display: flex; align-items: flex-end; justify-content: center; height: 100%; padding-bottom: 10px;">
-                <input type="text" id="horimetrosInput${i + 1}-${formId}" style="width: 20px; height: 80px; writing-mode: vertical-rl; text-align: center; transform: translateY(40px); padding-bottom: 10px;">
-            </div>
+            <input type="text" id="horimetrosInput${i + 1}-${formId}" style="width: 15px; height: 80px; writing-mode: vertical-rl; text-align: center;padding-bottom: 10px;margin-top: 30px;">
         `;
                 row.appendChild(cell);
             }
