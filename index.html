@@ -1744,7 +1744,6 @@
             return conductorCell;
         }
 
-        // Función para generar una fila con entradas
         function generateRowWithInputs(tableId, formId) {
             const row = document.createElement('tr');
 
@@ -1756,13 +1755,13 @@
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
-    <div style="display: flex; align-items: center;">
-        <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1;">
-            HORIMETRO
+        <div style="display: flex; align-items: flex-end; justify-content: center; height: 100%; padding-bottom: 10px;">
+            <div style="writing-mode: vertical-rl; text-orientation: upright; transform: translateY(20px); flex: 1;">
+                HORIMETRO
+            </div>
+            <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="transform: translateY(20px); padding-bottom: 10px; text-align: right;">
         </div>
-        <input type="number" id="horimetrosInput0-${formId}" class="input-style">
-    </div>
-`;
+    `;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1770,8 +1769,10 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="writing-mode: vertical-rl; text-align: center;">
-    `;
+            <div style="display: flex; align-items: flex-end; justify-content: center; height: 100%; padding-bottom: 10px;">
+                <input type="text" id="horimetrosInput${i + 1}-${formId}" style="writing-mode: vertical-rl; text-align: right; transform: translateY(20px); padding-bottom: 10px;">
+            </div>
+        `;
                 row.appendChild(cell);
             }
 
@@ -1779,6 +1780,8 @@
             const table = document.getElementById(tableId);
             table.appendChild(row);
         }
+
+
 
         // Función para actualizar el conductor seleccionado
         function updateConductorName(selectId, spanId) {
@@ -1954,8 +1957,8 @@
                 const span = document.createElement('span');
                 span.textContent = input.value;
                 span.style.display = 'block';
-                span.style.transform = 'rotate(-90deg)'; // Simular la escritura vertical
-                span.style.transformOrigin = 'left bottom'; // Alinear correctamente
+                span.style.transform = 'rotate(-90deg) translate(0, 20px)'; // Ajusta la rotación y posición
+                span.style.transformOrigin = 'center bottom'; // Ajusta el origen de transformación
                 span.style.whiteSpace = 'nowrap'; // Asegurarse de que no haya saltos de línea
                 span.style.width = '100%'; // Asegurar que el ancho sea el adecuado
                 span.style.textAlign = 'center';
@@ -1965,6 +1968,8 @@
                 input.replacedElement = span;
             });
         }
+
+
 
         // Restaurar los inputs de Horímetro después de generar el PDF
         function restoreHorimetroInputs(formId) {
