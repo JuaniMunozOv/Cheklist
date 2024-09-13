@@ -278,53 +278,54 @@ button {
 }
 
 @media print {
-    .a4-page {
-        width: 210mm;
-        /* Ancho de una página A4 */
-        height: 297mm;
-        /* Alto de una página A4 */
-        padding: 10mm;
-        /* Márgenes internos */
-        box-sizing: border-box;
-        background-color: white;
+    .a4-page input {
+        font-size: 12px;
+        height: auto;
+        width: 30px;
+        text-align: center;
+        transform: rotate(-90deg);
+        /* Simula la escritura vertical */
+        transform-origin: left bottom;
+        /* Ajusta el origen de la rotación */
+    }
+
+    .a4-page select,
+    .a4-page label {
+        font-size: 12px;
+    }
+
+    .a4-page td {
+        text-align: center;
+        transform: rotate(-90deg);
+        /* Simula la escritura vertical */
+        transform-origin: left bottom;
+        /* Ajusta el origen de la rotación */
     }
 }
+
 
 @media (max-width: 768px) {
-    .item-column {
-        width: 150px;
-        /* Ajuste para pantallas más pequeñas */
-    }
-
-    .day-column {
-        width: 50px;
-        /* Ajuste el ancho de las celdas de los días */
-    }
-}
-
-/* Para tablets en modo retrato (vertical) de 1200x2000 */
-@media (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
     body {
-        padding: 15px;
+        padding: 20px;
     }
 
     h1,
     h2 {
-        font-size: 1.8em;
-        padding: 15px;
+        font-size: 2em;
+        padding: 20px;
     }
 
     .header-info {
-        font-size: 18px;
-        width: 70%;
+        font-size: 20px;
+        width: 80%;
     }
 
     .table-container {
-        overflow-x: auto;
+        overflow-x: hidden;
     }
 
     table {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .item-column {
@@ -337,15 +338,64 @@ button {
         /* Ajuste el ancho de las columnas de los días */
     }
 
-    .signature-container {
-        height: auto;
-    }
-
-    /* Ajustes adicionales para que los botones y tablas se adapten mejor */
+    /* Ajustes para botones */
     .submit-button,
     .back-button {
         width: 100%;
         max-width: 400px;
+    }
+
+    .signature-container {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Para tablets en modo retrato (vertical) de 1200x2000 */
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
+    body {
+        padding: 20px;
+    }
+
+    h1,
+    h2 {
+        font-size: 2em;
+        padding: 20px;
+    }
+
+    .header-info {
+        font-size: 20px;
+        width: 80%;
+    }
+
+    .table-container {
+        overflow-x: hidden;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .item-column {
+        width: 180px;
+        /* Ajuste específico para tablets */
+    }
+
+    .day-column {
+        width: 60px;
+        /* Ajuste el ancho de las columnas de los días */
+    }
+
+    /* Ajustes para botones */
+    .submit-button,
+    .back-button {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .signature-container {
+        width: 100%;
+        height: auto;
     }
 }
 

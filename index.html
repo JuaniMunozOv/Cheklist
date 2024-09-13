@@ -15,7 +15,7 @@
         <h2>SELECIONE O CHECKLIST</h2>
         <nav class="checklist-container">
             <ul>
-                <li><a href="#" data-checklist="camionSonda" aria-label="Checklist para Caminhão Sonda">CAMINHÃO
+                <li><a href="#" data-checklist="CAMINHÃO-SONDA" aria-label="Checklist para CAMINHÃO-SONDA">CAMINHÃO
                         SONDA</a></li>
                 <li><a href="#" data-checklist="compressor" aria-label="Checklist para Compressor">COMPRESSOR</a></li>
                 <li><a href="#" data-checklist="sondaDb520" aria-label="Checklist para Sonda DB520">SONDA DB520</a></li>
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Vista de Checklist: CAMINHÃO SONDA -->
-    <div id="camionSonda" class="checklist-section">
+    <div id="CAMINHÃO-SONDA" class="checklist-section">
         <div class="checklist-header">
             <div class="logo">
                 <img src="" alt="Alcoa Logo">
@@ -71,7 +71,7 @@
 
         </div>
 
-        <h2>Checklist Diário de CAMINHÃO SONDA</h2>
+        <h2>Checklist Diário de CAMINHÃO-SONDA</h2>
 
         <table class="vehicle-info">
             <tr>
@@ -156,7 +156,7 @@
                     LEGENDA: B = BOM | I = INSUFICIENTE</th>
             </tr>
 
-            <table id="camionSondacond">
+            <table id="CAMINHÃO-SONDAcond">
                 <table>
                     <tr id="dynamic-row-camion"></tr>
                 </table>
@@ -171,8 +171,8 @@
                 </td>
 
                 <td colspan="100" style="text-align: center; vertical-align: middle; height: 150px; width: 100px;">
-                    <button id="signatureButtoncamionSonda"
-                        onclick="openSignatureModal(this, 'signatureModalcamionSonda', 'signatureCanvascamionSonda')"
+                    <button id="signatureButtonCAMINHÃO-SONDA"
+                        onclick="openSignatureModal(this, 'signatureModalCAMINHÃO-SONDA', 'signatureCanvasCAMINHÃO-SONDA')"
                         style="width: 100%; height: 100%; transform: rotate(-180deg); writing-mode: vertical-rl; font-weight: 300; font-size: 12px;">
                         Assinatura
                     </button>
@@ -181,14 +181,14 @@
             </table>
 
             <!-- Modal de Firma -->
-            <div id="signatureModalcamionSonda"
+            <div id="signatureModalCAMINHÃO-SONDA"
                 style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;">
                 <div
                     style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
-                    <canvas id="signatureCanvascamionSonda" width="400" height="200"
+                    <canvas id="signatureCanvasCAMINHÃO-SONDA" width="400" height="200"
                         style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignaturecamionSonda()">Limpo</button>
-                    <button onclick="saveSignaturecamionSonda()">Salvar assinatura</button>
+                    <button onclick="clearSignatureCAMINHÃO-SONDA()">Limpo</button>
+                    <button onclick="saveSignatureCAMINHÃO-SONDA()">Salvar assinatura</button>
                 </div>
             </div>
 
@@ -204,42 +204,61 @@
                     <tr>
                         <th colspan="13" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">ITEM</th>
-                        <th colspan="55" class="header right"
+                        <th colspan="65" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DESCRIÇÃO DAS
                             AÇÕES
                         </th>
                         <th colspan="30" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">RESPONSÁVEL</th>
-                        <th colspan="20" class="header right"
+                        <th colspan="10" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DATA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Filas de contenido dinámico aquí -->
                     <tr>
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                    </tr>
 
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
 
+                    <tr>
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                     <tr>
-                    </tr>
-
-                    <td colspan="13" style="height: 7px;"></td>
-                    <td colspan="55" style="height: 7px;"></td>
-                    <td colspan="30" style="height: 7px;"></td>
-                    <td colspan="20" style="height: 7px;"></td>
-
-                    </tr>
-                    <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                 </tbody>
                 <tr>
@@ -321,7 +340,7 @@
                 </tfoot>
 
             </table>
-            <button class="submit-button" onclick="generatePDF('camionSonda')">Salvar em PDF</button>
+            <button class="submit-button" onclick="generatePDF('CAMINHÃO-SONDA')">Salvar em PDF</button>
             <a class="back-button" onclick="showMainView()">Voltar ao início</a>
     </div>
 
@@ -417,7 +436,7 @@
 
                         <div style="height: 10%; padding: 15px;">
                             <label for="chapaAuto">CHAPA (Nº de Cracha):</label>
-                            <input type="text" id="chapaAuto" style="width: 50%; margin-top: 20px;" />
+                            <input type="text" id="chapaAuto" style="width: 60%; margin-top: 20px;" />
                         </div>
                     </td>
                     <td colspan="100" style="text-align: center; vertical-align: middle; height: 150px; width: 100px;">
@@ -437,7 +456,7 @@
                         </div>
                         <div style="height: 10%; padding: 15px;">
                             <label for="chapaSuper">CHAPA (Nº de Cracha):</label>
-                            <input type="text" id="chapaSuper" style="width: 50%; margin-top: 20px;" />
+                            <input type="text" id="chapaSuper" style="width: 60%; margin-top: 20px;" />
                         </div>
                     </td>
 
@@ -551,7 +570,7 @@
                 </tr>
             </table>
             <button class="submit-button" onclick="saveForm()">Guardar Avaliação</button>
-            <a class="back-button" onclick="showChecklist('camionSonda')">Voltar</a>
+            <a class="back-button" onclick="showChecklist('CAMINHÃO-SONDA')">Voltar</a>
     </div>
 
 
@@ -717,42 +736,59 @@
                     <tr>
                         <th colspan="13" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">ITEM</th>
-                        <th colspan="55" class="header right"
+                        <th colspan="65" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DESCRIÇÃO DAS
                             AÇÕES
                         </th>
                         <th colspan="30" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">RESPONSÁVEL</th>
-                        <th colspan="20" class="header right"
+                        <th colspan="10" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DATA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Filas de contenido dinámico aquí -->
                     <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                     <tr>
-                    </tr>
-
-                    <td colspan="13" style="height: 7px;"></td>
-                    <td colspan="55" style="height: 7px;"></td>
-                    <td colspan="30" style="height: 7px;"></td>
-                    <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                     <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                 </tbody>
                 <tr>
@@ -1010,42 +1046,54 @@
                     <tr>
                         <th colspan="13" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">ITEM</th>
-                        <th colspan="55" class="header right"
+                        <th colspan="65" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DESCRIÇÃO DAS
                             AÇÕES
                         </th>
                         <th colspan="30" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">RESPONSÁVEL</th>
-                        <th colspan="20" class="header right"
+                        <th colspan="10" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DATA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Filas de contenido dinámico aquí -->
                     <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                     <tr>
                     </tr>
 
-                    <td colspan="13" style="height: 7px;"></td>
-                    <td colspan="55" style="height: 7px;"></td>
-                    <td colspan="30" style="height: 7px;"></td>
-                    <td colspan="20" style="height: 7px;"></td>
+                    <td colspan="13" style="height: 21px;"></td>
+                    <td colspan="55" style="height: 21px;"></td>
+                    <td colspan="30" style="height: 21px;"></td>
+                    <td colspan="20" style="height: 21px;"></td>
 
                     </tr>
                     <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                 </tbody>
                 <tr>
@@ -1305,42 +1353,54 @@
                     <tr>
                         <th colspan="13" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">ITEM</th>
-                        <th colspan="55" class="header right"
+                        <th colspan="65" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DESCRIÇÃO DAS
                             AÇÕES
                         </th>
                         <th colspan="30" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">RESPONSÁVEL</th>
-                        <th colspan="20" class="header right"
+                        <th colspan="10" class="header right"
                             style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DATA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Filas de contenido dinámico aquí -->
                     <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                     <tr>
                     </tr>
 
-                    <td colspan="13" style="height: 7px;"></td>
-                    <td colspan="55" style="height: 7px;"></td>
-                    <td colspan="30" style="height: 7px;"></td>
-                    <td colspan="20" style="height: 7px;"></td>
+                    <td colspan="13" style="height: 21px;"></td>
+                    <td colspan="55" style="height: 21px;"></td>
+                    <td colspan="30" style="height: 21px;"></td>
+                    <td colspan="20" style="height: 21px;"></td>
 
                     </tr>
                     <tr>
-
-                        <td colspan="13" style="height: 7px;"></td>
-                        <td colspan="55" style="height: 7px;"></td>
-                        <td colspan="30" style="height: 7px;"></td>
-                        <td colspan="20" style="height: 7px;"></td>
-
+                        <td colspan="13" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="55" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="30" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
+                        <td colspan="20" style="height: 21px;">
+                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                        </td>
                     </tr>
                 </tbody>
                 <tr>
@@ -1421,7 +1481,7 @@
             <a class="back-button" onclick="showMainView()">Voltar ao início</a>
     </div>
 
-    <script src="./js/camionsonda.js" defer></script>
+    <script src="./js/CAMINHÃO-SONDA.js" defer></script>
     <script src="./js/autosonda.js" defer></script>
     <script src="./js/compressor.js" defer></script>
     <script src="./js/sonda520.js" defer></script>
@@ -1605,30 +1665,32 @@
 
         function saveForm() {
             alert('Avaliação guardada com sucesso!');
-            showChecklist('camionSonda');
+            showChecklist('CAMINHÃO-SONDA');
         }
 
         // Hack para forzar el reflow en iOS
         document.body.addEventListener('touchstart', function () { });
 
-        function generateRowWithInputs(tableId) {
+        // Función para generar una fila con entradas
+        // Función para generar una fila con entradas
+        function generateRowWithInputs(tableId, formId) {
             const row = document.createElement('tr');
 
             // Usar la función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
-            const conductorCell = createConductorChapaCell();
+            const conductorCell = createConductorChapaCell(formId);
             row.appendChild(conductorCell);
 
-            // Crear la primera celda con "HORARIOS" y el input
+            // Crear la primera celda con "HORIMETRO" y el input
             const firstInputCell = document.createElement('td');
             firstInputCell.className = 'day-column';
             firstInputCell.innerHTML = `
     <div style="display: flex; align-items: center;">
-        <div style="writing-mode: vertical-rl; text-orientation: upright; flex: 1; text-decoration: solid;">
+        <div style="transform: rotate(-90deg); transform-origin: left bottom; flex: 1;">
             HORIMETRO
         </div>
-        <input type="number" id="horimetrosInput0" class="input-style">
+        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="transform: rotate(-90deg); transform-origin: left bottom; text-align: center;">
     </div>
-`;
+    `;
             row.appendChild(firstInputCell);
 
             // Crear celdas de entrada restantes con alineación vertical
@@ -1636,16 +1698,17 @@
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-        <div style="display: flex; align-items: center;"></div>
-        <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
+        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="transform: rotate(-90deg); transform-origin: left bottom; text-align: center; height: 100px; width: 30px;">
     `;
                 row.appendChild(cell);
             }
 
             // Agregar la fila a la tabla
-            const table = document.getElementById(tableId); // Reemplaza con tu ID de tabla
+            const table = document.getElementById(tableId);
             table.appendChild(row);
         }
+
+
 
 
         // Función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
@@ -1673,10 +1736,10 @@
         </select>
         <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
     </div>
-    <div style="height: 10%; padding: 15px;">
-        <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
-        <input type="text" id="chapa-${formId}" />
-    </div>
+    <div style="height: 90%;width: 80%; padding: 15px;">
+        <label for="chapa-${formId}" style="font-size: 14px;">CHAPA (Nº de Cracha):</label>
+        <input type="text" id="chapa-${formId}" style="font-size: 12px;height: 100%; width: 80%;"/>
+    </div>  
 `;
             return conductorCell;
         }
@@ -1726,7 +1789,7 @@
         }
 
         // Llamar a la función para generar filas con IDs únicos en las tablas específicas
-        generateRowWithInputs('camionSondacond', 'camion');
+        generateRowWithInputs('CAMINHÃO-SONDAcond', 'camion');
         generateRowWithInputs('CompressorCondChap', 'compressor');
         generateRowWithInputs('Sonda520cond', 'sonda');
         generateRowWithInputs('SondaRotativa', 'sondaRotativa');
@@ -1827,11 +1890,11 @@
             signatureHandler.openModal(button, modalId, canvasId);
         }
 
-        function clearSignaturecamionSonda() {
+        function clearSignatureCAMINHÃOSONDA() {
             signatureHandler.clearSignature();
         }
 
-        function saveSignaturecamionSonda() {
+        function saveSignatureCAMINHÃOSONDA() {
             signatureHandler.saveSignature();
         }
 
@@ -1882,8 +1945,45 @@
 
 
 
+        // Convertir solo los inputs de Horímetro a spans antes de exportar
+        function convertHorimetroInputsToSpans(formId) {
+            const form = document.getElementById(formId);
+            const horimetroInputs = form.querySelectorAll('input[id^="horimetrosInput"]'); // Selecciona solo los inputs de Horímetro
+
+            horimetroInputs.forEach(input => {
+                const span = document.createElement('span');
+                span.textContent = input.value;
+                span.style.display = 'block';
+                span.style.transform = 'rotate(-90deg)'; // Simular la escritura vertical
+                span.style.transformOrigin = 'left bottom'; // Alinear correctamente
+                span.style.whiteSpace = 'nowrap'; // Asegurarse de que no haya saltos de línea
+                span.style.width = '100%'; // Asegurar que el ancho sea el adecuado
+                span.style.textAlign = 'center';
+
+                input.parentNode.replaceChild(span, input);
+                input.originalElement = input; // Guardar el input original para restaurarlo después
+                input.replacedElement = span;
+            });
+        }
+
+        // Restaurar los inputs de Horímetro después de generar el PDF
+        function restoreHorimetroInputs(formId) {
+            const form = document.getElementById(formId);
+            const horimetroSpans = form.querySelectorAll('span');
+
+            horimetroSpans.forEach(span => {
+                if (span.originalElement) {
+                    span.parentNode.replaceChild(span.originalElement, span);
+                }
+            });
+        }
+
+        // Función para generar el PDF
         function generatePDF(formId) {
             const { jsPDF } = window.jspdf;
+
+            // Convertir solo los inputs de Horímetro a spans antes de generar el PDF
+            convertHorimetroInputsToSpans(formId);
 
             // Selecciona el contenedor del formulario que deseas exportar
             const content = document.getElementById(formId);
@@ -1891,9 +1991,6 @@
             // Configura las dimensiones para una página A4 (210mm x 297mm)
             const a4Width = 210; // Ancho en mm
             const a4Height = 297; // Alto en mm
-
-            // Aplica estilos CSS para ajustar el formulario a A4
-            content.classList.add('a4-page');
 
             // Usa html2canvas para capturar el contenido ajustado
             html2canvas(content, { scale: 1 }).then(canvas => {
@@ -1919,14 +2016,16 @@
                     }
                 }
 
-                // Remueve la clase de A4 al final
-                content.classList.remove('a4-page');
-
                 // Guardar el PDF
                 const year = new Date().getFullYear();
                 pdf.save(`Checklist_${formId}_${year}.pdf`);
+
+                // Restaurar los inputs de Horímetro después de generar el PDF
+                restoreHorimetroInputs(formId);
             });
         }
+
+
 
 
 
