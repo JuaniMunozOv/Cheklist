@@ -1,0 +1,354 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    /* Reducido el padding para dispositivos móviles */
+    background-color: #e4e2e2;
+}
+
+h1,
+h2 {
+    text-align: center;
+    background-color: #0000001f;
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid black;
+}
+
+.navigation {
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+}
+
+.navigation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.navigation li {
+    margin: 20px 0;
+    /* Reducido el margen para dispositivos móviles */
+}
+
+.navigation a {
+    display: inline-block;
+    /* Cambiado a inline-block para ajustarse mejor */
+    text-decoration: none;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: #0056b3 solid 2px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.checklist-section {
+    display: none;
+    /* Oculto por defecto */
+}
+
+.checklist-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.header-title {
+    flex-grow: 2;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.header-info {
+    text-align: right;
+    font-size: 22px;
+    width: 60%;
+}
+
+.header-info table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.header-info td {
+    border: 1px solid black;
+    padding: 5px 4px;
+}
+
+.vehicle-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.vehicle-info td {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.vehicle-info td:first-child {
+    font-weight: bold;
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #d32f2f;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: auto;
+}
+
+.pare-icon {
+    display: block;
+    margin: 10px auto;
+    width: 30px;
+    height: 30px;
+}
+
+th,
+td {
+    border: 1px solid #6564647b;
+    text-align: center;
+    padding: 4px;
+    font-size: 9px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+.checklist-item {
+    text-align: left;
+}
+
+.submit-button {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.table-container {
+    overflow-x: auto;
+    /* Permite desplazar la tabla horizontalmente en dispositivos móviles */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed;
+}
+
+/* Estilos para las filas y celdas de la tabla */
+.table-container th,
+.table-container td {
+    border: 1px solid #6564647b;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    /* Aumentado el tamaño de fuente para mejorar legibilidad en dispositivos móviles */
+}
+
+.signature-container {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#signature-pad {
+    border: 1px solid #000;
+    cursor: crosshair;
+    display: block;
+    margin: 0 auto;
+}
+
+button {
+    margin-top: 5px;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+/* Estilo general para las celdas de la tabla */
+.table-cell {
+    width: 200px;
+    /* Consistencia en el ancho de las celdas de la tabla */
+    vertical-align: top;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.338);
+}
+
+.input-style {
+    writing-mode: vertical-rl;
+    flex: 1;
+    text-align: center;
+}
+
+.first-column {
+    width: 500px;
+    /* Ancho consistente con las otras columnas */
+    vertical-align: top;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.338);
+}
+
+.first-column select,
+.first-column input[type="text"] {
+    width: 50%;
+    /* Ajusta el ancho de los elementos internos */
+    margin-top: 5px;
+}
+
+.item-column {
+    width: 400px;
+    /* El mismo ancho que la primera columna */
+    color: black;
+    font-size: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.338);
+}
+
+.day-column {
+    width: 200px;
+    /* Ancho fijo para las columnas de los días */
+    vertical-align: top;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.338);
+}
+
+@media print {
+    .a4-page {
+        width: 210mm;
+        /* Ancho de una página A4 */
+        height: 297mm;
+        /* Alto de una página A4 */
+        padding: 10mm;
+        /* Márgenes internos */
+        box-sizing: border-box;
+        background-color: white;
+    }
+}
+
+/* Para tablets en modo retrato (vertical) de 1200x2000 */
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
+    body {
+        padding: 15px;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.8em;
+        padding: 15px;
+    }
+
+    .header-info {
+        font-size: 18px;
+        width: 70%;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        font-size: 10px;
+    }
+
+    .signature-container {
+        height: auto;
+    }
+
+    /* Ajustes adicionales para que los botones y tablas se adapten mejor */
+    .submit-button,
+    .back-button {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+/* Para tablets en modo paisaje (horizontal) de 2000x1200 */
+@media (min-width: 1200px) and (max-width: 2000px) and (orientation: landscape) {
+    body {
+        padding: 20px;
+    }
+
+    h1,
+    h2 {
+        font-size: 2em;
+        padding: 20px;
+    }
+
+    .header-info {
+        font-size: 20px;
+        width: 80%;
+    }
+
+    .table-container {
+        overflow-x: hidden;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    /* Ajustes para botones */
+    .submit-button,
+    .back-button {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .signature-container {
+        width: 100%;
+        height: auto;
+    }
+}
