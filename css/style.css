@@ -177,7 +177,11 @@ th {
 
 .table-container {
     overflow-x: auto;
-    /* Permite desplazar la tabla horizontalmente en dispositivos móviles */
+    overflow-y: hidden;
+    /* Permitir desplazamiento horizontal en pantallas táctiles */
+    white-space: nowrap;
+    /* Evita que el contenido se ajuste automáticamente en una nueva línea */
+    position: relative;
 }
 
 .table-container table {
@@ -190,12 +194,11 @@ th {
 /* Estilos para las filas y celdas de la tabla */
 .table-container th,
 .table-container td {
-    border: 1px solid #6564647b;
-    text-align: center;
     padding: 8px;
     font-size: 12px;
-    /* Aumentado el tamaño de fuente para mejorar legibilidad en dispositivos móviles */
+    /* Ajusta el tamaño de las celdas para dispositivos móviles */
 }
+
 
 .signature-container {
     text-align: center;
@@ -250,11 +253,20 @@ button {
 }
 
 .item-column {
-    width: 400px;
-    /* El mismo ancho que la primera columna */
+    width: 200px;
+    /* Ajuste el ancho de la primera columna */
     color: black;
     font-size: 12px;
     border: 1px solid rgba(0, 0, 0, 0.338);
+    position: -webkit-sticky;
+    /* Soporte para Safari */
+    position: sticky;
+    left: 0;
+    /* Fija la primera columna a la izquierda */
+    background-color: white;
+    /* Mantiene un fondo visible para la columna */
+    z-index: 2;
+    /* Para que esté por encima de otras columnas */
 }
 
 .day-column {
@@ -275,6 +287,18 @@ button {
         /* Márgenes internos */
         box-sizing: border-box;
         background-color: white;
+    }
+}
+
+@media (max-width: 768px) {
+    .item-column {
+        width: 150px;
+        /* Ajuste para pantallas más pequeñas */
+    }
+
+    .day-column {
+        width: 50px;
+        /* Ajuste el ancho de las celdas de los días */
     }
 }
 
@@ -301,6 +325,16 @@ button {
 
     table {
         font-size: 10px;
+    }
+
+    .item-column {
+        width: 180px;
+        /* Ajuste específico para tablets */
+    }
+
+    .day-column {
+        width: 60px;
+        /* Ajuste el ancho de las columnas de los días */
     }
 
     .signature-container {
@@ -338,6 +372,16 @@ button {
 
     table {
         font-size: 12px;
+    }
+
+    .item-column {
+        width: 180px;
+        /* Ajuste específico para tablets */
+    }
+
+    .day-column {
+        width: 60px;
+        /* Ajuste el ancho de las columnas de los días */
     }
 
     /* Ajustes para botones */
