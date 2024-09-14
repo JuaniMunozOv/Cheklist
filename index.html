@@ -1688,7 +1688,6 @@
         document.body.addEventListener('touchstart', function () { });
 
         // Función para generar una fila con entradas
-        // Función para generar una fila con entradas
         function generateRowWithInputs(tableId, formId) {
             const row = document.createElement('tr');
 
@@ -1696,83 +1695,50 @@
             const conductorCell = createConductorChapaCell(formId);
             row.appendChild(conductorCell);
 
-            // Crear la primera celda con "HORIMETRO" y el input
-            const firstInputCell = document.createElement('td');
-            firstInputCell.className = 'day-column';
-            firstInputCell.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; margin-top: 30px;">
-            HORIMETRO
-        </div>
-        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="width: 40px; height: 60px; text-align: center; margin-top: 10px;">
-    </div>
-`;
-            row.appendChild(firstInputCell);
+            // Crear la celda con el texto "HORIMETRO" independiente
+            // Modificación para la celda con el texto "HORIMETRO"
+            const horimetroCell = document.createElement('td');
+            horimetroCell.className = 'day-column';
+            horimetroCell.style.width = '10px';  // Hacer el contenedor más pequeño
+            horimetroCell.style.height = '20px'; // Ajustar la altura
+            horimetroCell.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; margin-top: 25px;"> 
+                    <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; font-size: 8px;width:15px;">
+                        HORIMETRO
+                    </div>
+                </div>
+            `;
 
-            // Crear celdas de entrada restantes con alineación vertical
-            for (let i = 0; i < 30; i++) {
+            row.appendChild(horimetroCell);
+
+            // Crear 31 celdas de entrada (una por cada día)
+            for (let i = 0; i < 31; i++) {
                 const cell = document.createElement('td');
                 cell.className = 'day-column';
                 cell.innerHTML = `
-        <input type="text" id="horimetrosInput${i + 1}-${formId}" style="transform: rotate(-90deg); transform-origin: left bottom; text-align: center; height: 50px; width: 15px;">
-    `;
+                    <input type="text" id="horimetrosInput${i}-${formId}" 
+                        style="width: 15px; height: 90px; writing-mode: vertical-rl; text-align: center;margin-top: 50px;">
+                `;
                 row.appendChild(cell);
             }
 
             // Agregar la fila a la tabla
             const table = document.getElementById(tableId);
             table.appendChild(row);
-        } function generateRowWithInputs(tableId) {
-            const row = document.createElement('tr');
-
-            // Usar la función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
-            const conductorCell = createConductorChapaCell();
-            row.appendChild(conductorCell);
-
-            // Crear la primera celda con "HORARIOS" y el input
-            const firstInputCell = document.createElement('td');
-            firstInputCell.className = 'day-column';
-            firstInputCell.innerHTML = `
-       <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; margin-top: 30px;">
-            HORIMETRO
-        </div>
-        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="width: 40px; height: 60px; text-align: center; margin-top: 10px;">
-    </div>
-`;
-            row.appendChild(firstInputCell);
-
-            // Crear celdas de entrada restantes con alineación vertical
-            for (let i = 0; i < 30; i++) {
-                const cell = document.createElement('td');
-                cell.className = 'day-column';
-                cell.innerHTML = `
-            <div style="display: flex; align-items: center;"></div>
-            <input type="text" id="horimetrosInput${i + 1}" style="writing-mode: vertical-rl; flex: 1; text-align: center;">
-        `;
-                row.appendChild(cell);
-            }
-
-            // Agregar la fila a la tabla
-            const table = document.getElementById(tableId); // Reemplaza con tu ID de tabla
-            table.appendChild(row);
         }
 
-
-        // Función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
         // Función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
         function createConductorChapaCell(formId) {
             const conductorCell = document.createElement('td');
             conductorCell.className = 'first-column';
             conductorCell.innerHTML = `
-        <div style="height: 90%; width: 80%; border-bottom: 1px solid black; padding: 15px;">
+        <div style="height: 80%; width: 60%; border-bottom: 1px solid black; padding: 10px;">
             <label for="conductor-${formId}">CONDUTOR:</label>
             <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
                 <option value="Condutor"></option>
                 <option value="Ildoson Almeida">Ildoson Almeida</option>
                 <option value="Ivanildo Santarém">Ivanildo Santarém</option>
                 <option value="Lecindio Soares">Lecindio Soares</option>
-                <option value="Vaga Auxiliar">Vaga Auxiliar</option>
                 <option value="Wilson Silva">Wilson Silva</option>
                 <option value="Auricélio Santana">Auricélio Santana</option>
                 <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
@@ -1785,48 +1751,12 @@
             </select>
             <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
         </div>
-        <div style="height: 10%; padding: 15px;">
+        <div style="height: 80%; width: 60%;padding: 10px;">
             <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
             <input type="text" id="chapa-${formId}" />
         </div>
     `;
             return conductorCell;
-        }
-
-        // Función para generar una fila con entradas
-        function generateRowWithInputs(tableId, formId) {
-            const row = document.createElement('tr');
-
-            // Usar la función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
-            const conductorCell = createConductorChapaCell(formId);
-            row.appendChild(conductorCell);
-
-            // Crear la primera celda con "HORIMETRO" y el input
-            const firstInputCell = document.createElement('td');
-            firstInputCell.className = 'day-column';
-            firstInputCell.innerHTML = `
-        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap;">
-            HORIMETRO
-        </div>
-        <input type="number" id="horimetrosInput0-${formId}" class="input-style" style="width: 40px; height: 60px; text-align: center; margin-top: 10px;">
-    </div>
-`;
-            row.appendChild(firstInputCell);
-
-            // Crear celdas de entrada restantes con alineación vertical
-            for (let i = 0; i < 30; i++) {
-                const cell = document.createElement('td');
-                cell.className = 'day-column';
-                cell.innerHTML = `
-            <input type="text" id="horimetrosInput${i + 1}-${formId}" style="width: 15px; height: 80px; writing-mode: vertical-rl; text-align: center;padding-bottom: 10px;margin-top: 30px;">
-        `;
-                row.appendChild(cell);
-            }
-
-            // Agregar la fila a la tabla
-            const table = document.getElementById(tableId);
-            table.appendChild(row);
         }
 
 
