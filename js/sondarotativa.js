@@ -103,32 +103,119 @@ function generateChecklistSondaRotativaTable() {
             checklistBody.appendChild(titleRow);
         }
 
+        // Si es una nueva sección, agregar un título de sección
+        if (currentSection !== sectionNumber) {
+            currentSection = sectionNumber;
+            const titleRow = document.createElement('tr');
+            const titleCell = document.createElement('td');
+            titleCell.colSpan = 32; // Abarca todas las columnas
+            titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Mostrar el título de la sección
+            titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
+            titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
+            titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
+            titleCell.style.borderBottom = '2px solid black'; // Borde negro más fuerte en la parte inferior
+            titleRow.appendChild(titleCell);
+            checklistBody.appendChild(titleRow);
+        }
+
         const row = document.createElement('tr');
 
-        // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
+        // Crear la celda del ítem
         const itemCell = document.createElement('td');
         itemCell.className = 'item-column';
         itemCell.textContent = item.text;
-        itemCell.style.color = item.color; // Aplicar color dinámicamente
-        itemCell.style.position = 'sticky'; // Hacer sticky
-        itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-        itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
+        itemCell.style.color = item.color;
         row.appendChild(itemCell);
 
-        // Crear las celdas de los días del mes
+        // Crear las celdas para los días del mes (31 días)
         for (let day = 1; day <= 31; day++) {
             const dayCell = document.createElement('td');
-            dayCell.className = 'day-column'; // Usar clase CSS para el ancho fijo
+            dayCell.className = 'day-column';
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.id = `day${day}-item${itemIndex + 1}`; // ID único
             dayCell.appendChild(checkbox);
             row.appendChild(dayCell);
         }
 
         checklistBody.appendChild(row);
     });
+    // Agregar la fila de separación con la leyenda
+    const legendRow = document.createElement('tr');
+    const legendCell = document.createElement('th');
+    legendCell.colSpan = 32; // Abarca todas las columnas
+    legendCell.className = 'header right';
+    legendCell.style.color = 'red';
+    legendCell.style.backgroundColor = 'grey';
+    legendCell.style.borderTop = '1px solid black';
+    legendCell.style.borderBottom = '1px solid black';
+    legendCell.textContent = 'LEGENDA: B = BOM | I = INSUFICIENTE';
+    legendRow.appendChild(legendCell);
+    checklistBody.appendChild(legendRow);
 }
 
-// Llamar a las funciones para generar las filas
+
+function generateConductorRow() {
+    const checklistBody = document.getElementById('checklist-body');
+    const row = document.createElement('tr');
+
+    // Celda para "CONDUTOR" y "CHAPA"
+    const conductorChapaCell = document.createElement('td');
+    conductorChapaCell.className = 'item-column';
+    conductorChapaCell.innerHTML = `
+        <div>
+            <label>CONDUTOR:</label>
+            <select>
+                <option value="Condutor"></option>
+                <option value="Ildoson Almeida">Ildoson Almeida</option>
+                <option value="Ivanildo Santarém">Ivanildo Santarém</option>
+                <option value="Lecindio Soares">Lecindio Soares</option>
+                <option value="Wilson Silva">Wilson Silva</option>
+                <option value="Auricélio Santana">Auricélio Santana</option>
+                <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
+                <option value="Diego Pinheiro">Diego Pinheiro</option>
+                <option value="Edenilson Alves">Edenilson Alves</option>
+                <option value="Erick Lima">Erick Lima</option>
+                <option value="Ericson Souza">Ericson Souza</option>
+                <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
+                <option value="Rodolfo">Rodolfo</option>
+            </select>
+        </div>
+        <div>
+            <label>CHAPA (Nº de Cracha):</label>
+            <input type="text" placeholder="Chapa" />
+        </div>`;
+    row.appendChild(conductorChapaCell);
+
+    // Celda para "HORIMETRO" (texto vertical a la izquierda y input al lado)
+    const horimetroCell = document.createElement('td');
+    horimetroCell.className = 'day-column';
+    horimetroCell.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: row;">
+        <!-- Texto HORIMETRO en vertical -->
+        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; font-size: 8px;width:15px;">
+                        HORIMETRO
+        </div>
+        <!-- Input a la derecha del texto -->
+        <input type="text" style="width: 10px; height: 50px;text-align: center;margin-top: 30px;writing-mode: vertical-rl;"/>
+    </div>`;
+    row.appendChild(horimetroCell);
+
+
+    // Crear las celdas para los 31 días con inputs alineados a los días anteriores
+    for (let i = 0; i < 30; i++) {
+        const cell = document.createElement('td');
+        cell.className = 'day-column';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.style = 'width: 15px; height: 90px; writing-mode: vertical-rl; text-align: center;margin-top: 30px;';
+        cell.appendChild(input);
+        row.appendChild(cell);
+    }
+
+    checklistBody.appendChild(row);
+}
+
+// Llamar a las funciones para generar la tabla y la fila adicional
+
+generateConductorRow();
 generateChecklistSondaRotativaTable();

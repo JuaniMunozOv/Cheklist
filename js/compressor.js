@@ -26,53 +26,24 @@ const checklistItemsCompressor = [
     { text: "2.2.* Nível de óleo do motor", color: 'red' },
     { text: "2.3.* Nível de oleo hidraulico Garrafa", color: 'red' }
 ];
-
-function generateChecklistCompressorTable() {
+function generateChecklistTableCompressor() {
     const checklistBody = document.getElementById('checklist-body-Compressor');
-    let currentSection = ''; // Variable para rastrear la sección actual
 
     checklistItemsCompressor.forEach((item, itemIndex) => {
-        const sectionNumber = item.text.split('.')[0]; // Obtiene el número de sección
-
-        const sectionTitles = {
-            '1': '1. BÁSICO',
-            '2': '2. REQUISITO DE MANUTENÇÃO'
-        };
-
-        // Si es una nueva sección, agregar un título de sección
-        if (currentSection !== sectionNumber) {
-            currentSection = sectionNumber;
-            const titleRow = document.createElement('tr');
-            const titleCell = document.createElement('td');
-            titleCell.colSpan = 32; // Abarca todas las columnas
-            titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Mostrar el título de la sección
-            titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
-            titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
-            titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
-            titleCell.style.borderBottom = '2px solid black'; // Borde negro más fuerte en la parte inferior
-            titleRow.appendChild(titleCell);
-            checklistBody.appendChild(titleRow);
-        }
-
         const row = document.createElement('tr');
 
-        // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
+        // Crear la celda del ítem
         const itemCell = document.createElement('td');
         itemCell.className = 'item-column';
         itemCell.textContent = item.text;
-        itemCell.style.color = item.color; // Aplicar color dinámicamente
-        itemCell.style.position = 'sticky'; // Hacer sticky
-        itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-        itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
+        itemCell.style.color = item.color;
         row.appendChild(itemCell);
 
-        // Crear las celdas de los días del mes
+        // Crear las celdas para los días del mes (31 días)
         for (let day = 1; day <= 31; day++) {
             const dayCell = document.createElement('td');
-            dayCell.className = 'day-column'; // Usar clase CSS para el ancho fijo
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.id = `day${day}-item${itemIndex + 1}`; // ID único
             dayCell.appendChild(checkbox);
             row.appendChild(dayCell);
         }
@@ -81,5 +52,53 @@ function generateChecklistCompressorTable() {
     });
 }
 
-// Llamar a la función para generar la tabla
-generateChecklistCompressorTable();
+function generateConductorRowCompressor() {
+    const checklistBody = document.getElementById('dynamic-row-compressor');
+    const row = document.createElement('tr');
+
+    // Celda para "CONDUTOR" y "CHAPA"
+    const conductorChapaCell = document.createElement('td');
+    conductorChapaCell.className = 'item-column';
+    conductorChapaCell.innerHTML = `
+        <div>
+            <label>CONDUTOR:</label>
+            <select>
+                <option value="Condutor"></option>
+                <option value="Ildoson Almeida">Ildoson Almeida</option>
+                <!-- más opciones... -->
+            </select>
+        </div>
+        <div>
+            <label>CHAPA (Nº de Cracha):</label>
+            <input type="text" placeholder="Chapa" />
+        </div>`;
+    row.appendChild(conductorChapaCell);
+
+    // Celda para "HORIMETRO"
+    const horimetroCell = document.createElement('td');
+    horimetroCell.className = 'day-column';
+    horimetroCell.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: row;">
+            <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; font-size: 8px;">
+                HORIMETRO
+            </div>
+            <input type="text" style="width: 10px; height: 50px; text-align: center;" />
+        </div>`;
+    row.appendChild(horimetroCell);
+
+    // Crear celdas para los 31 días con inputs alineados
+    for (let i = 0; i < 31; i++) {
+        const dayCell = document.createElement('td');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.style = 'width: 15px; height: 50px; writing-mode: vertical-rl; text-align: center;';
+        dayCell.appendChild(input);
+        row.appendChild(dayCell);
+    }
+
+    checklistBody.appendChild(row);
+}
+
+// Llamar a las funciones para generar la tabla y la fila de conductor
+generateChecklistTableCompressor();
+generateConductorRowCompressor();

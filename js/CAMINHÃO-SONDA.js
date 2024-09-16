@@ -1,4 +1,5 @@
-const checklistItems = [
+// Items del checklist para CAMINHÃO-SONDA
+const checklistItemsCaminhao = [
     { text: "1.1. *Cinto de Segurança (3 pontos) em todos os bancos", color: 'red' },
     { text: "1.2. *Buzina", color: 'red' },
     { text: "1.3. *Extintor de Incêndio e suporte", color: 'red' },
@@ -41,21 +42,46 @@ const checklistItems = [
     { text: "4.4. Indicador de Pressão de Freio no Painel", color: 'black' }
 ];
 
-// Generar dinámicamente las filas de la tabla
-function generateChecklistTable() {
-    const checklistBody = document.getElementById('checklist-body');
+// Títulos de las secciones
+const sectionTitles = {
+    '1': '1. BÁSICO',
+    '2': '2. DISPOSITO DE ALARME/AVISO E SINALIZAÇÃO',
+    '3': '3. DISPOSITIVO DE PROTEÇÃO ATIVA',
+    '4': '4. REQUISITO DE MANUTENÇÃO (verificar visualmente ausência de quebras, folgas, trincas e vazamentos)'
+};
 
+// Función para generar los encabezados de los días (1-31)
+function generateDayHeaders(tableId) {
+    const table = document.getElementById(tableId);
+    const thead = table.querySelector('thead');
+
+    // Verificar si ya existe una fila de encabezado
+    if (thead.querySelector('tr')) {
+        return; // Si ya existe, no hacer nada
+    }
+
+    const row = document.createElement('tr');
+    const thItem = document.createElement('th');
+    thItem.style.width = "200px";
+    thItem.textContent = "Item";
+    row.appendChild(thItem);
+
+    for (let day = 1; day <= 31; day++) {
+        const th = document.createElement('th');
+        th.textContent = `Día ${day}`;
+        row.appendChild(th);
+    }
+
+    thead.appendChild(row);
+}
+
+// Función para generar la tabla de checklist con inputs
+function generateChecklistTableCaminhao() {
+    const checklistBody = document.getElementById('checklist-body-Caminhao');
     let currentSection = '';
 
-    checklistItems.forEach((item, itemIndex) => {
+    checklistItemsCaminhao.forEach((item, itemIndex) => {
         const sectionNumber = item.text.split('.')[0]; // Obtiene el número de sección
-
-        const sectionTitles = {
-            '1': '1. BÁSICO',
-            '2': '2. DISPOSITO DE ALARME/AVISO E SINALIZAÇÃO',
-            '3': '3. DISPOSITIVO DE PROTEÇÃO ATIVA',
-            '4': '4. REQUISITO DE MANUTENÇÃO (verificar visualmente ausência de quebras, folgas, trincas e vazamentos)'
-        };
 
         // Si es una nueva sección, agregar un título de sección
         if (currentSection !== sectionNumber) {
@@ -63,7 +89,7 @@ function generateChecklistTable() {
             const titleRow = document.createElement('tr');
             const titleCell = document.createElement('td');
             titleCell.colSpan = 32; // Abarca todas las columnas
-            titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Mostrar el título de la sección
+            titleCell.textContent = sectionTitles[sectionNumber]; // Mostrar el título de la sección
             titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
             titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
             titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
@@ -73,25 +99,16 @@ function generateChecklistTable() {
         }
 
         const row = document.createElement('tr');
-
-        // Crear la celda del nombre del ítem con clase para el ancho fijo y sticky
         const itemCell = document.createElement('td');
-        itemCell.className = 'item-column';
         itemCell.textContent = item.text;
-        itemCell.style.color = item.color; // Aplicar color dinámicamente
-        itemCell.style.position = 'sticky'; // Hacer sticky
-        itemCell.style.left = '0'; // Mantenerla alineada a la izquierda
-        itemCell.style.backgroundColor = '#fff'; // Fondo blanco para que no se mezcle con el resto de la tabla
+        itemCell.style.color = item.color;
         row.appendChild(itemCell);
 
-        // Crear las celdas de los días del mes
         for (let day = 1; day <= 31; day++) {
             const dayCell = document.createElement('td');
-            dayCell.className = 'day-column'; // Usar clase CSS para el ancho fijo
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = `day${day}-item${itemIndex + 1}`; // ID único
-            dayCell.appendChild(checkbox);
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            dayCell.appendChild(input);
             row.appendChild(dayCell);
         }
 
@@ -99,5 +116,64 @@ function generateChecklistTable() {
     });
 }
 
-// Llamar a la función para generar la tabla al cargar la página
-generateChecklistTable();
+// Función para generar la fila de CONDUCTOR y CHAPA
+function generateConductorRowCaminhao() {
+    const checklistBody = document.getElementById('checklist-body-Caminhao');
+    const row = document.createElement('tr');
+
+    const conductorChapaCell = document.createElement('td');
+    conductorChapaCell.innerHTML = `
+        <label>CONDUTOR:</label>
+        <select id="conductorCaminhao" placeholder="CONDUTOR">
+            <option value=""></option>
+                <option value="Ildoson Almeida">Ildoson Almeida</option>
+                <option value="Ivanildo Santarém">Ivanildo Santarém</option>
+                <option value="Lecindio Soares">Lecindio Soares</option>
+                <option value="Wilson Silva">Wilson Silva</option>
+                <option value="Auricélio Santana">Auricélio Santana</option>
+                <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
+                <option value="Diego Pinheiro">Diego Pinheiro</option>
+                <option value="Edenilson Alves">Edenilson Alves</option>
+                <option value="Erick Lima">Erick Lima</option>
+                <option value="Ericson Souza">Ericson Souza</option>
+                <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
+                <option value="Rodolfo">Rodolfo</option>
+        </select>
+        <label>CHAPA (Nº de Cracha):</label>
+        <input type="text" id="chapaCaminhao" placeholder="Chapa" />
+    `;
+    row.appendChild(conductorChapaCell);
+
+    const horimetroCell = document.createElement('td');
+    horimetroCell.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <!-- Texto HORIMETRO en vertical -->
+        <div style="transform: rotate(-90deg); white-space: nowrap; font-size: 12px; margin-bottom: 10px;">
+            HORIMETRO
+        </div>
+        <!-- Input paralelo al texto -->
+        <input type="text" style="width: 15px; height: 70px; writing-mode: vertical-rl; text-align: center;">
+    </div>
+`;
+    row.appendChild(horimetroCell);
+
+
+    // Añade las 31 celdas de entrada para los días
+    for (let i = 0; i < 30; i++) {
+        const cell = document.createElement('td');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl;';
+        cell.appendChild(input);
+        row.appendChild(cell);
+    }
+
+    checklistBody.appendChild(row);
+}
+
+// Llamar a las funciones al cargar el documento
+document.addEventListener("DOMContentLoaded", function () {
+    generateDayHeaders('checklist-table-Caminhao');
+    generateChecklistTableCaminhao();
+    generateConductorRowCaminhao();
+});

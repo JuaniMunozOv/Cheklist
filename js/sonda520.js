@@ -129,3 +129,4 @@ function generateChecklistSondaTable() {
 
 // Llamar a las funciones para generar las filas
 generateChecklistSondaTable();
+generateRowWithInputs('Sonda520cond', 'sonda');

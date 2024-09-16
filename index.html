@@ -133,34 +133,32 @@
             </tr>
         </table>
 
-        <table id="checklist-table">
+        <table id="checklist-table-Caminhao">
             <thead>
                 <tr>
-                    <th style="width: 200px;">Item</th>
+
                     <!-- Generar columnas para los días del mes -->
-                    <script>
-                        for (let day = 1; day <= 31; day++) {
-                            document.write(`<th>Día ${day}</th>`);
-                        }
-                    </script>
+
                 </tr>
             </thead>
 
-            <tbody id="checklist-body">
-                <!-- Las filas serán generadas dinámicamente con JavaScript -->
-            </tbody>
-
-            <tr>
-                <th colspan="118" class="header right"
-                    style="color: red; background-color: grey; border-top: 1px solid black; border-bottom: 1px solid black;">
-                    LEGENDA: B = BOM | I = INSUFICIENTE</th>
-            </tr>
-
-            <table id="CAMINHÃO-SONDAcond">
-                <table>
-                    <tr id="dynamic-row-camion"></tr>
-                </table>
+            <table id="checklist-table-Caminhao">
+                <thead>
+                    <tr>
+                        <th class="item-column">Item</th>
+                        <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
+                        <script>
+                            for (let day = 1; day <= 31; day++) {
+                                document.write(`<th class="day-column">Día ${day}</th>`);
+                            }
+                        </script>
+                    </tr>
+                </thead>
+                <tbody id="checklist-body-Caminhao">
+                    <!-- Las filas se generarán aquí dinámicamente con JavaScript -->
+                </tbody>
             </table>
+
 
             <table>
 
@@ -390,7 +388,7 @@
         <h2>Auto Avaliação do Motorista</h2>
 
 
-        <table id="checklist-table">
+        <table id="checklist-table-auto">
             <thead>
                 <tr>
                     <th style="width: 200px;">Item</th>
@@ -660,12 +658,11 @@
                 </td>
             </tr>
         </table>
-
-        <table id="checklist-table">
+        <!-- Estructura HTML para un formulario, sin duplicar las filas o columnas -->
+        <table id="checklist-table-Compressor">
             <thead>
                 <tr>
                     <th style="width: 200px;">Item</th>
-                    <!-- Generar columnas para los días del mes -->
                     <script>
                         for (let day = 1; day <= 31; day++) {
                             document.write(`<th>Día ${day}</th>`);
@@ -673,220 +670,207 @@
                     </script>
                 </tr>
             </thead>
-
             <tbody id="checklist-body-Compressor">
-                <!-- Las filas serán generadas dinámicamente con JavaScript -->
+                <!-- Las filas serán generadas dinámicamente -->
             </tbody>
+        </table>
 
 
-            <tr>
-                <th colspan="118" class="header right"
-                    style="color: red; background-color: grey; border-top: 1px solid black; border-bottom: 1px solid black;">
-                    LEGENDA: B = BOM | I = INSUFICIENTE</th>
-            </tr>
+        <table>
 
-            <table id="CompressorCondChap">
-                <table>
-                    <tr id="dynamic-row-compressor"></tr>
-                </table>
+            <td colspan="1" style="width: 100px; vertical-align: top; padding: 0; border: 1px solid black;">
 
-            </table>
+                <span style="font-weight: 300; font-size: 20px;width: 50%; margin-top: 5px;">NOME</span>
 
-            <table>
+            </td>
 
-                <td colspan="1" style="width: 100px; vertical-align: top; padding: 0; border: 1px solid black;">
+            <td colspan="100" style="text-align: center; vertical-align: middle; height: 150px; width: 100px;">
+                <button id="signatureButtonCompressor"
+                    onclick="openSignatureModal(this, 'signatureModalCompressor', 'signatureCanvasCompressor')"
+                    style="width: 100%; height: 100%; transform: rotate(-180deg); writing-mode: vertical-rl; font-weight: 300; font-size: 12px;">
+                    Assinatura
+                </button>
+            </td>
 
-                    <span style="font-weight: 300; font-size: 20px;width: 50%; margin-top: 5px;">NOME</span>
+        </table>
 
-                </td>
-
-                <td colspan="100" style="text-align: center; vertical-align: middle; height: 150px; width: 100px;">
-                    <button id="signatureButtonCompressor"
-                        onclick="openSignatureModal(this, 'signatureModalCompressor', 'signatureCanvasCompressor')"
-                        style="width: 100%; height: 100%; transform: rotate(-180deg); writing-mode: vertical-rl; font-weight: 300; font-size: 12px;">
-                        Assinatura
-                    </button>
-                </td>
-
-            </table>
-
-            <!-- Modal de Firma -->
-            <div id="signatureModalCompressor"
-                style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;">
-                <div
-                    style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
-                    <canvas id="signatureCanvasCompressor" width="400" height="200"
-                        style="border: 1px solid black;"></canvas>
-                    <button onclick="clearSignatureCompressor()">Limpiar</button>
-                    <button onclick="saveSignatureCompressor()">Guardar Firma</button>
-                </div>
+        <!-- Modal de Firma -->
+        <div id="signatureModalCompressor"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;">
+            <div
+                style="background: white; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
+                <canvas id="signatureCanvasCompressor" width="400" height="200"
+                    style="border: 1px solid black;"></canvas>
+                <button onclick="clearSignatureCompressor()">Limpiar</button>
+                <button onclick="saveSignatureCompressor()">Guardar Firma</button>
             </div>
+        </div>
 
 
 
-            <table class="formulario">
-                <thead>
-                    <tr>
-                        <th colspan="118" class="header right"
-                            style="color: rgb(0, 0, 0); background-color: rgba(145, 138, 138, 0.363); border: 1px solid black;">
-                            AÇÃO REQUERIDA</th>
-                    </tr>
-                    </tr>
-
-                    <tr>
-                        <th colspan="13" class="header right"
-                            style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">ITEM</th>
-                        <th colspan="65" class="header right"
-                            style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DESCRIÇÃO DAS
-                            AÇÕES
-                        </th>
-                        <th colspan="30" class="header right"
-                            style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">RESPONSÁVEL</th>
-                        <th colspan="10" class="header right"
-                            style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DATA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Filas de contenido dinámico aquí -->
-                    <tr>
-                        <td colspan="13" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="65" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="30" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="10" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td colspan="13" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="65" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="30" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="10" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="13" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="65" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="30" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                        <td colspan="10" style="height: 21px;">
-                            <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
-                        </td>
-                    </tr>
-                </tbody>
+        <table class="formulario">
+            <thead>
                 <tr>
                     <th colspan="118" class="header right"
                         style="color: rgb(0, 0, 0); background-color: rgba(145, 138, 138, 0.363); border: 1px solid black;">
-                        OBSERVAÇÕES</th>
+                        AÇÃO REQUERIDA</th>
                 </tr>
-                <tfoot>
-                    <tr>
-                        <td colspan="118" class="note" style="height: 15px; font-size: 15px;">
-                            1. Caso haja qualquer item mandatório em <span class="vermelho"
-                                style="color:red">VERMELHO</span>
-                            com avaliação insuficiente, o equipamento deverá ser retirado de operação até que o reparo
-                            dos itens
-                            sejam corrigidos (acionar a manutenção).
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="warning" style="height: 15px; font-size: 15px;">
-                            2. Não realizar reparos. Não abrir o reservatório de água/radiador nem realizar manuseio no
-                            motor
-                            com o mesmo quente ou funcionando
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="instructions" style="height: 15px; font-size: 15px;">
-                            3.Todas as vezes que for utilizar o equipamento, este check list deverá ser executado, mesmo
-                            que já
-                            tenha sido preenchido o do dia, sendo registrado as anormalidades em separadamente e
-                            comunicadas ao
-                            encarregado de
-                            manutenção ou veículos
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="instructions" style="height: 15px; font-size: 15px;">
-                            4.Os seguintes itens relacionados a seguir são opcionais, devendo ser contemplados em
-                            APR/Procedimento dependendo da atividade (identificação a serviço da mina juruti na porta do
-                            veículo, identificação de capacidade de carga,sistema inteligente de anti-colisão, rádio de
-                            comunicação, cabine climatizada com sistema de filtragem de particulados, kit de 1º socorros
-                            e kit
-                            de emergência)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            5.É proíbido realizar qualquer atividade dentro do compartimento no motor com o mesmo em
-                            funcionamento
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            <span class="vermelho" style="color:red">
-                                Casa haja algum ítem esteje marcado como isuficiente,aplicar a ferramenta: PARE e BUSQUE
-                                AJUDA
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            <span class="vermelho" style="color:red">
-                                Identificação de item impeditivo no check list
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            <span class="vermelho" style="color:red">
-                                d Falta e Autorização para a atividade
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            <span class="vermelho" style="color:red">Falta de Treinamentos Mandatórios e Específicos
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            <span class="vermelho" style="color:red">
-                                Falta de Procedimento para a execução da atividade</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
-                            <!-- ImagenBase64 STOP -->
-                        </td>
-                    </tr>
-                    </tr>
-                </tfoot>
+                </tr>
 
-            </table>
+                <tr>
+                    <th colspan="13" class="header right"
+                        style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">ITEM</th>
+                    <th colspan="65" class="header right"
+                        style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DESCRIÇÃO DAS
+                        AÇÕES
+                    </th>
+                    <th colspan="30" class="header right"
+                        style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">RESPONSÁVEL</th>
+                    <th colspan="10" class="header right"
+                        style="color: rgb(0, 0, 0);background-color: transparent; height: 20px; ">DATA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas de contenido dinámico aquí -->
+                <tr>
+                    <td colspan="13" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="65" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="30" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="10" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                </tr>
 
-            <button class="submit-button" onclick="generatePDF('compressor')">Salvar em PDF</button>
-            <a class="back-button" onclick="showMainView()">Voltar ao início</a>
+
+                <tr>
+                    <td colspan="13" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="65" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="30" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="10" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="13" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="65" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="30" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                    <td colspan="10" style="height: 21px;">
+                        <input type="text" style="width: 100%; height: 100%; box-sizing: border-box;" />
+                    </td>
+                </tr>
+            </tbody>
+            <tr>
+                <th colspan="118" class="header right"
+                    style="color: rgb(0, 0, 0); background-color: rgba(145, 138, 138, 0.363); border: 1px solid black;">
+                    OBSERVAÇÕES</th>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="118" class="note" style="height: 15px; font-size: 15px;">
+                        1. Caso haja qualquer item mandatório em <span class="vermelho"
+                            style="color:red">VERMELHO</span>
+                        com avaliação insuficiente, o equipamento deverá ser retirado de operação até que o reparo
+                        dos itens
+                        sejam corrigidos (acionar a manutenção).
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="warning" style="height: 15px; font-size: 15px;">
+                        2. Não realizar reparos. Não abrir o reservatório de água/radiador nem realizar manuseio no
+                        motor
+                        com o mesmo quente ou funcionando
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="instructions" style="height: 15px; font-size: 15px;">
+                        3.Todas as vezes que for utilizar o equipamento, este check list deverá ser executado, mesmo
+                        que já
+                        tenha sido preenchido o do dia, sendo registrado as anormalidades em separadamente e
+                        comunicadas ao
+                        encarregado de
+                        manutenção ou veículos
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="instructions" style="height: 15px; font-size: 15px;">
+                        4.Os seguintes itens relacionados a seguir são opcionais, devendo ser contemplados em
+                        APR/Procedimento dependendo da atividade (identificação a serviço da mina juruti na porta do
+                        veículo, identificação de capacidade de carga,sistema inteligente de anti-colisão, rádio de
+                        comunicação, cabine climatizada com sistema de filtragem de particulados, kit de 1º socorros
+                        e kit
+                        de emergência)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        5.É proíbido realizar qualquer atividade dentro do compartimento no motor com o mesmo em
+                        funcionamento
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        <span class="vermelho" style="color:red">
+                            Casa haja algum ítem esteje marcado como isuficiente,aplicar a ferramenta: PARE e BUSQUE
+                            AJUDA
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        <span class="vermelho" style="color:red">
+                            Identificação de item impeditivo no check list
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        <span class="vermelho" style="color:red">
+                            d Falta e Autorização para a atividade
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        <span class="vermelho" style="color:red">Falta de Treinamentos Mandatórios e Específicos
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        <span class="vermelho" style="color:red">
+                            Falta de Procedimento para a execução da atividade</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="118" class="footer" style="height: 15px; font-size: 15px;">
+                        <!-- ImagenBase64 STOP -->
+                    </td>
+                </tr>
+                </tr>
+            </tfoot>
+
+        </table>
+
+        <button class="submit-button" onclick="generatePDF('compressor')">Salvar em PDF</button>
+        <a class="back-button" onclick="showMainView()">Voltar ao início</a>
     </div>
 
     <!-- Vista de Checklist: SONDA DB520 -->
@@ -976,7 +960,7 @@
             </tr>
         </table>
 
-        <table id="checklist-table">
+        <table id="checklist-table-sonda520">
             <thead>
                 <tr>
                     <th style="width: 200px;">Item</th>
@@ -1291,7 +1275,7 @@
             </tr>
         </table>
 
-        <table id="checklist-table">
+        <table id="checklist-table-rotativa">
             <thead>
                 <tr>
                     <th style="width: 200px;">Item</th>
@@ -1687,103 +1671,6 @@
         // Hack para forzar el reflow en iOS
         document.body.addEventListener('touchstart', function () { });
 
-        // Función para generar una fila con entradas
-        function generateRowWithInputs(tableId, formId) {
-            const row = document.createElement('tr');
-
-            // Usar la función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
-            const conductorCell = createConductorChapaCell(formId);
-            row.appendChild(conductorCell);
-
-            // Crear la celda con el texto "HORIMETRO" independiente
-            // Modificación para la celda con el texto "HORIMETRO"
-            const horimetroCell = document.createElement('td');
-            horimetroCell.className = 'day-column';
-            horimetroCell.style.width = '10px';  // Hacer el contenedor más pequeño
-            horimetroCell.style.height = '20px'; // Ajustar la altura
-            horimetroCell.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: center; height: 100%; margin-top: 25px;"> 
-                    <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; font-size: 8px;width:15px;">
-                        HORIMETRO
-                    </div>
-                </div>
-            `;
-
-            row.appendChild(horimetroCell);
-
-            // Crear 31 celdas de entrada (una por cada día)
-            for (let i = 0; i < 31; i++) {
-                const cell = document.createElement('td');
-                cell.className = 'day-column';
-                cell.innerHTML = `
-                    <input type="text" id="horimetrosInput${i}-${formId}" 
-                        style="width: 15px; height: 90px; writing-mode: vertical-rl; text-align: center;margin-top: 50px;">
-                `;
-                row.appendChild(cell);
-            }
-
-            // Agregar la fila a la tabla
-            const table = document.getElementById(tableId);
-            table.appendChild(row);
-        }
-
-        // Función reutilizable para crear la celda "CONDUCTOR" y "CHAPA"
-        function createConductorChapaCell(formId) {
-            const conductorCell = document.createElement('td');
-            conductorCell.className = 'first-column';
-            conductorCell.innerHTML = `
-        <div style="height: 80%; width: 60%; border-bottom: 1px solid black; padding: 10px;">
-            <label for="conductor-${formId}">CONDUTOR:</label>
-            <select id="conductor-${formId}" onchange="updateConductorName('conductor-${formId}', 'selectedConductor-${formId}')">
-                <option value="Condutor"></option>
-                <option value="Ildoson Almeida">Ildoson Almeida</option>
-                <option value="Ivanildo Santarém">Ivanildo Santarém</option>
-                <option value="Lecindio Soares">Lecindio Soares</option>
-                <option value="Wilson Silva">Wilson Silva</option>
-                <option value="Auricélio Santana">Auricélio Santana</option>
-                <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
-                <option value="Diego Pinheiro">Diego Pinheiro</option>
-                <option value="Edenilson Alves">Edenilson Alves</option>
-                <option value="Erick Lima">Erick Lima</option>
-                <option value="Ericson Souza">Ericson Souza</option>
-                <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
-                <option value="Rodolfo">Rodolfo</option>
-            </select>
-            <span id="selectedConductor-${formId}" style="display: block; font-weight: bold; margin-top: 5px;"></span>
-        </div>
-        <div style="height: 80%; width: 60%;padding: 10px;">
-            <label for="chapa-${formId}">CHAPA (Nº de Cracha):</label>
-            <input type="text" id="chapa-${formId}" />
-        </div>
-    `;
-            return conductorCell;
-        }
-
-
-
-        // Función para actualizar el conductor seleccionado
-        function updateConductorName(selectId, spanId) {
-            const conductorSelect = document.getElementById(selectId);
-            const selectedConductor = conductorSelect.value;
-            const conductorSpan = document.getElementById(spanId);
-            conductorSpan.textContent = selectedConductor;
-        }
-
-        // Llamar a la función para generar filas con IDs únicos en las tablas específicas
-        generateRowWithInputs('CAMINHÃO-SONDAcond', 'camion');
-        generateRowWithInputs('CompressorCondChap', 'compressor');
-        generateRowWithInputs('Sonda520cond', 'sonda');
-        generateRowWithInputs('SondaRotativa', 'sondaRotativa');
-
-
-        function updateConductorName(selectId, displayId) {
-            const conductorSelect = document.getElementById(selectId); // Obtener el select por su ID
-            const selectedConductor = conductorSelect.value; // Obtener el valor seleccionado
-            const displayElement = document.getElementById(displayId); // Obtener el span asociado
-
-            // Mostrar el conductor seleccionado en el span
-            displayElement.textContent = selectedConductor;
-        }
 
         // Clase para manejar la firma
         class SignatureHandler {
