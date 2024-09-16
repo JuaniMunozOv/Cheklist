@@ -146,17 +146,10 @@ function generateConductorRowCaminhao() {
 
     const horimetroCell = document.createElement('td');
     horimetroCell.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <!-- Texto HORIMETRO en vertical -->
-        <div style="transform: rotate(-90deg); white-space: nowrap; font-size: 12px; margin-bottom: 10px;">
-            HORIMETRO
-        </div>
-        <!-- Input paralelo al texto -->
-        <input type="text" style="width: 15px; height: 70px; writing-mode: vertical-rl; text-align: center;">
-    </div>
-`;
+        <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 40px;margin-top:40px;">HORIMETRO</div>
+        <input type="text" style="width: 15px; height:70px; writing-mode: vertical-rl;">
+    `;
     row.appendChild(horimetroCell);
-
 
     // Añade las 31 celdas de entrada para los días
     for (let i = 0; i < 30; i++) {

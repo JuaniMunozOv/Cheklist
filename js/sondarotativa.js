@@ -69,7 +69,19 @@ const checklistItemsSondaRotativa = [
     { text: "8.6.* Haste Travada com Cinta ( Deslocamento)", color: 'red' }
 ];
 
-// Función corregida para generar la tabla con secciones y entradas
+// Títulos de las secciones
+const sectionTitlesSondaRotativa = {
+    '1': '1. BÁSICO',
+    '2': '2. TORRE DA SONDA PERFURATRIZ',
+    '3': '3. MOTOR DA SONDA',
+    '4': '4. DISPOSITIVO DE PROTEÇÃO ATIVA',
+    '5': '5. AMBIENTE DE TRABALHO DA SONDA',
+    '6': '6. REQUISITO DE MANUTENÇÃO',
+    '7': '7. Kit de emergência ambiental',
+    '8': '8. CARROSSEL'
+};
+
+// Función para generar la tabla con secciones y entradas
 function generateChecklistSondaRotativaTable() {
     const checklistBody = document.getElementById('checklist-body-SondaRotativa');
     let currentSection = ''; // Variable para rastrear la sección actual
@@ -77,39 +89,13 @@ function generateChecklistSondaRotativaTable() {
     checklistItemsSondaRotativa.forEach((item, itemIndex) => {
         const sectionNumber = item.text.split('.')[0]; // Obtiene el número de sección
 
-        const sectionTitles = {
-            '1': '1. BÁSICO',
-            '2': '2. TORRE DA SONDA PERFURATRIZ',
-            '3': '3. MOTOR DA SONDA',
-            '4': '4. DISPOSITIVO DE PROTEÇÃO ATIVA',
-            '5': '5. AMBIENTE DE TRABALHO DA SONDA',
-            '6': '6. REQUISITO DE MANUTENÇÃO',
-            '7': '7. Kit de emergência ambiental',
-            '8': '8. CARROSSEL'
-        };
-
         // Si es una nueva sección, agregar un título de sección
         if (currentSection !== sectionNumber) {
             currentSection = sectionNumber;
             const titleRow = document.createElement('tr');
             const titleCell = document.createElement('td');
             titleCell.colSpan = 32; // Abarca todas las columnas
-            titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Mostrar el título de la sección
-            titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
-            titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
-            titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
-            titleCell.style.borderBottom = '2px solid black'; // Borde negro más fuerte en la parte inferior
-            titleRow.appendChild(titleCell);
-            checklistBody.appendChild(titleRow);
-        }
-
-        // Si es una nueva sección, agregar un título de sección
-        if (currentSection !== sectionNumber) {
-            currentSection = sectionNumber;
-            const titleRow = document.createElement('tr');
-            const titleCell = document.createElement('td');
-            titleCell.colSpan = 32; // Abarca todas las columnas
-            titleCell.textContent = ` ${sectionTitles[sectionNumber]}`; // Mostrar el título de la sección
+            titleCell.textContent = ` ${sectionTitlesSondaRotativa[sectionNumber]}`; // Mostrar el título de la sección
             titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
             titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
             titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
@@ -153,19 +139,16 @@ function generateChecklistSondaRotativaTable() {
     checklistBody.appendChild(legendRow);
 }
 
-
-function generateConductorRow() {
-    const checklistBody = document.getElementById('checklist-body');
+// Función para generar la fila de CONDUCTOR y CHAPA
+function generateConductorRowSondaRotativa() {
+    const checklistBody = document.getElementById('checklist-body-SondaRotativa');
     const row = document.createElement('tr');
 
-    // Celda para "CONDUTOR" y "CHAPA"
     const conductorChapaCell = document.createElement('td');
-    conductorChapaCell.className = 'item-column';
     conductorChapaCell.innerHTML = `
-        <div>
-            <label>CONDUTOR:</label>
-            <select>
-                <option value="Condutor"></option>
+        <label>CONDUTOR:</label>
+        <select id="conductorSondaRotativa" placeholder="CONDUTOR">
+            <option value=""></option>
                 <option value="Ildoson Almeida">Ildoson Almeida</option>
                 <option value="Ivanildo Santarém">Ivanildo Santarém</option>
                 <option value="Lecindio Soares">Lecindio Soares</option>
@@ -178,36 +161,25 @@ function generateConductorRow() {
                 <option value="Ericson Souza">Ericson Souza</option>
                 <option value="Jean Claudio Qaueiroz">Jean Claudio Qaueiroz</option>
                 <option value="Rodolfo">Rodolfo</option>
-            </select>
-        </div>
-        <div>
-            <label>CHAPA (Nº de Cracha):</label>
-            <input type="text" placeholder="Chapa" />
-        </div>`;
+        </select>
+        <label>CHAPA (Nº de Cracha):</label>
+        <input type="text" id="chapaSondaRotativa" placeholder="Chapa" />
+    `;
     row.appendChild(conductorChapaCell);
 
-    // Celda para "HORIMETRO" (texto vertical a la izquierda y input al lado)
     const horimetroCell = document.createElement('td');
-    horimetroCell.className = 'day-column';
     horimetroCell.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: row;">
-        <!-- Texto HORIMETRO en vertical -->
-        <div style="transform: rotate(-90deg); transform-origin: center; white-space: nowrap; font-size: 8px;width:15px;">
-                        HORIMETRO
-        </div>
-        <!-- Input a la derecha del texto -->
-        <input type="text" style="width: 10px; height: 50px;text-align: center;margin-top: 30px;writing-mode: vertical-rl;"/>
-    </div>`;
+        <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 40px;margin-top:20px;">HORIMETRO</div>
+        <input type="text" style="width: 15px; height:70px; writing-mode: vertical-rl;">
+    `;
     row.appendChild(horimetroCell);
 
-
-    // Crear las celdas para los 31 días con inputs alineados a los días anteriores
+    // Añade las 31 celdas de entrada para los días
     for (let i = 0; i < 30; i++) {
         const cell = document.createElement('td');
-        cell.className = 'day-column';
         const input = document.createElement('input');
         input.type = 'text';
-        input.style = 'width: 15px; height: 90px; writing-mode: vertical-rl; text-align: center;margin-top: 30px;';
+        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl;';
         cell.appendChild(input);
         row.appendChild(cell);
     }
@@ -215,7 +187,8 @@ function generateConductorRow() {
     checklistBody.appendChild(row);
 }
 
-// Llamar a las funciones para generar la tabla y la fila adicional
-
-generateConductorRow();
-generateChecklistSondaRotativaTable();
+// Llamar a las funciones al cargar el documento
+document.addEventListener("DOMContentLoaded", function () {
+    generateChecklistSondaRotativaTable("checklist-table-SondaRotativa");
+    generateConductorRowSondaRotativa();
+});
