@@ -156,3 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
     generateChecklistTableCompressor();
     generateConductorRowCompressor();
 });
+
+// Llamar a la función generatePDF cuando sea necesario
+document.getElementById('exportButton').addEventListener('click', function () {
+    generatePDF('checklist-table-Compressor');
+});

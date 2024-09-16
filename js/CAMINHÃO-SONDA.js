@@ -170,3 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
     generateChecklistTableCaminhao();
     generateConductorRowCaminhao();
 });
+
+// Llamar a la función generatePDF cuando sea necesario
+document.getElementById('exportButton').addEventListener('click', function () {
+    generatePDF('checklist-table-Caminhao');
+});

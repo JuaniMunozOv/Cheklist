@@ -172,7 +172,7 @@ function generateConductorRowSonda() {
     const horimetroCell = document.createElement('td');
     horimetroCell.innerHTML = `
         <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 40px;margin-top:20px;">HORIMETRO</div>
-        <input type="text" style="width: 15px; height:70px; writing-mode: vertical-rl;">
+        <input type="text" id="horimetrosInput" style="width: 15px; height:70px; writing-mode: vertical-rl;">
     `;
     row.appendChild(horimetroCell);
 
@@ -181,6 +181,7 @@ function generateConductorRowSonda() {
         const cell = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'text';
+        input.id = `horimetrosInput${i + 1}`;
         input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl;';
         cell.appendChild(input);
         row.appendChild(cell);
@@ -194,4 +195,9 @@ document.addEventListener("DOMContentLoaded", function () {
     generateDayHeaders('checklist-table-Sonda');
     generateChecklistTableSonda();
     generateConductorRowSonda();
+});
+
+// Llamar a la función generatePDF cuando sea necesario
+document.getElementById('exportButton').addEventListener('click', function () {
+    generatePDF('checklist-table-Sonda');
 });

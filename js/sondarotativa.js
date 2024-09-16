@@ -192,3 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
     generateChecklistSondaRotativaTable("checklist-table-SondaRotativa");
     generateConductorRowSondaRotativa();
 });
+
+// Llamar a la función generatePDF cuando sea necesario
+document.getElementById('exportButton').addEventListener('click', function () {
+    generatePDF('checklist-table-SondaRotativa');
+});
