@@ -81,10 +81,12 @@ const sectionTitlesSondaRotativa = {
     '8': '8. CARROSSEL'
 };
 
-// Función para generar la tabla con secciones y entradas
-function generateChecklistSondaRotativaTable() {
+
+
+// Función para generar la tabla de checklist con inputs
+function generateChecklistTableSondaRotativa() {
     const checklistBody = document.getElementById('checklist-body-SondaRotativa');
-    let currentSection = ''; // Variable para rastrear la sección actual
+    let currentSection = '';
 
     checklistItemsSondaRotativa.forEach((item, itemIndex) => {
         const sectionNumber = item.text.split('.')[0]; // Obtiene el número de sección
@@ -94,8 +96,8 @@ function generateChecklistSondaRotativaTable() {
             currentSection = sectionNumber;
             const titleRow = document.createElement('tr');
             const titleCell = document.createElement('td');
-            titleCell.colSpan = 32; // Abarca todas las columnas
-            titleCell.textContent = ` ${sectionTitlesSondaRotativa[sectionNumber]}`; // Mostrar el título de la sección
+            titleCell.colSpan = 34; // Abarca todas las columnas
+            titleCell.textContent = sectionTitlesSondaRotativa[sectionNumber]; // Mostrar el título de la sección
             titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
             titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
             titleCell.style.borderTop = '2px solid black'; // Borde negro más fuerte en la parte superior
@@ -105,38 +107,27 @@ function generateChecklistSondaRotativaTable() {
         }
 
         const row = document.createElement('tr');
-
-        // Crear la celda del ítem
         const itemCell = document.createElement('td');
-        itemCell.className = 'item-column';
         itemCell.textContent = item.text;
         itemCell.style.color = item.color;
+        itemCell.style.position = "sticky";
+        itemCell.style.left = "0";
+        itemCell.style.backgroundColor = "#fff";
         row.appendChild(itemCell);
 
-        // Crear las celdas para los días del mes (31 días)
+        const emptyCell = document.createElement('td');
+        row.appendChild(emptyCell);
+
         for (let day = 1; day <= 31; day++) {
             const dayCell = document.createElement('td');
-            dayCell.className = 'day-column';
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            dayCell.appendChild(checkbox);
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            dayCell.appendChild(input);
             row.appendChild(dayCell);
         }
 
         checklistBody.appendChild(row);
     });
-    // Agregar la fila de separación con la leyenda
-    const legendRow = document.createElement('tr');
-    const legendCell = document.createElement('th');
-    legendCell.colSpan = 32; // Abarca todas las columnas
-    legendCell.className = 'header right';
-    legendCell.style.color = 'red';
-    legendCell.style.backgroundColor = 'grey';
-    legendCell.style.borderTop = '1px solid black';
-    legendCell.style.borderBottom = '1px solid black';
-    legendCell.textContent = 'LEGENDA: B = BOM | I = INSUFICIENTE';
-    legendRow.appendChild(legendCell);
-    checklistBody.appendChild(legendRow);
 }
 
 // Función para generar la fila de CONDUCTOR y CHAPA
@@ -168,23 +159,36 @@ function generateConductorRowSondaRotativa() {
     row.appendChild(conductorChapaCell);
 
     const horimetroCell = document.createElement('td');
-    horimetroCell.style.display = 'flex';
-    horimetroCell.style.alignItems = 'center';
-    horimetroCell.style.justifyContent = 'center';
-    horimetroCell.innerHTML = `
-        <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 5px; margin-top: 20px;">HORIMETRO</div>
-        <input type="text" id="horimetrosInput" style="width: 15px; height: 70px; writing-mode: vertical-rl; margin-top: 10px;">
-    `;
+
+    // Crear un contenedor div para alinear y rotar el texto
+    const horimetroText = document.createElement('div');
+    horimetroText.textContent = 'HORIMETRO';
+    horimetroText.style.fontWeight = 'bold';
+    horimetroText.style.transform = 'rotate(-90deg)'; // Rotar el texto 90 grados
+    horimetroText.style.transformOrigin = 'center'; // Ajustar el punto de rotación
+    horimetroText.style.whiteSpace = 'nowrap'; // Evitar que el texto se corte en varias líneas
+    horimetroText.style.textAlign = 'center'; // Centrar el texto
+    horimetroText.style.display = 'flex';
+    horimetroText.style.justifyContent = 'center';
+    horimetroText.style.alignItems = 'center';
+    horimetroText.style.height = '100px'; // Ajusta la altura si es necesario
+
+    // Agregar el div rotado a la celda
+    horimetroCell.appendChild(horimetroText);
+
+    // Agregar la celda a la fila
     row.appendChild(horimetroCell);
 
 
+
+
     // Añade las 31 celdas de entrada para los días
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 31; i++) {
         const cell = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'text';
         input.id = `horimetrosInput${i + 1}`;
-        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl; margin-top: 10px;';
+        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl; text-orientation: mixed; margin-top: 10px;';
         cell.appendChild(input);
         row.appendChild(cell);
     }
@@ -194,11 +198,11 @@ function generateConductorRowSondaRotativa() {
 
 // Llamar a las funciones al cargar el documento
 document.addEventListener("DOMContentLoaded", function () {
-    generateChecklistSondaRotativaTable();
+    generateChecklistTableSondaRotativa();
     generateConductorRowSondaRotativa();
 });
 
 // Llamar a la función generatePDF cuando sea necesario
 document.getElementById('exportButton').addEventListener('click', function () {
-    generatePDF('checklist-body-SondaRotativa');
+    generatePDF('checklist-table-SondaRotativa');
 });

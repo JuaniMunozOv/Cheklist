@@ -36,31 +36,6 @@ const sectionTitlesCompressor = {
     '4': '4. REQUISITO DE MANUTENÇÃO (verificar visualmente ausência de quebras, folgas, trincas e vazamentos)'
 };
 
-// Función para generar los encabezados de los días (1-31)
-function generateDayHeaders(tableId) {
-    const table = document.getElementById(tableId);
-    const thead = table.querySelector('thead');
-
-    // Verificar si ya existe una fila de encabezado
-    if (thead.querySelector('tr')) {
-        return; // Si ya existe, no hacer nada
-    }
-
-    const row = document.createElement('tr');
-    const thItem = document.createElement('th');
-    thItem.style.width = "200px";
-    thItem.textContent = "Item";
-    row.appendChild(thItem);
-
-    for (let day = 1; day <= 31; day++) {
-        const th = document.createElement('th');
-        th.textContent = `Día ${day}`;
-        row.appendChild(th);
-    }
-
-    thead.appendChild(row);
-}
-
 // Función para generar la tabla de checklist con inputs
 function generateChecklistTableCompressor() {
     const checklistBody = document.getElementById('checklist-body-Compressor');
@@ -74,7 +49,7 @@ function generateChecklistTableCompressor() {
             currentSection = sectionNumber;
             const titleRow = document.createElement('tr');
             const titleCell = document.createElement('td');
-            titleCell.colSpan = 32; // Abarca todas las columnas
+            titleCell.colSpan = 34; // Abarca todas las columnas
             titleCell.textContent = sectionTitlesCompressor[sectionNumber]; // Mostrar el título de la sección
             titleCell.style.fontWeight = 'bold'; // Hacerlo más prominente
             titleCell.style.backgroundColor = '#f8f9fa'; // Fondo gris claro
@@ -88,7 +63,13 @@ function generateChecklistTableCompressor() {
         const itemCell = document.createElement('td');
         itemCell.textContent = item.text;
         itemCell.style.color = item.color;
+        itemCell.style.position = "sticky";
+        itemCell.style.left = "0";
+        itemCell.style.backgroundColor = "#fff";
         row.appendChild(itemCell);
+
+        const emptyCell = document.createElement('td');
+        row.appendChild(emptyCell);
 
         for (let day = 1; day <= 31; day++) {
             const dayCell = document.createElement('td');
@@ -102,7 +83,7 @@ function generateChecklistTableCompressor() {
     });
 }
 
-/// Función para generar la fila de CONDUCTOR y CHAPA
+// Función para generar la fila de CONDUCTOR y CHAPA
 function generateConductorRowCompressor() {
     const checklistBody = document.getElementById('checklist-body-Compressor');
     const row = document.createElement('tr');
@@ -131,23 +112,36 @@ function generateConductorRowCompressor() {
     row.appendChild(conductorChapaCell);
 
     const horimetroCell = document.createElement('td');
-    horimetroCell.style.display = 'flex';
-    horimetroCell.style.alignItems = 'center';
-    horimetroCell.style.justifyContent = 'center';
-    horimetroCell.innerHTML = `
-        <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 5px; margin-top: 20px;">HORIMETRO</div>
-        <input type="text" id="horimetrosInput" style="width: 15px; height: 70px; writing-mode: vertical-rl; margin-top: 10px;">
-    `;
+
+    // Crear un contenedor div para alinear y rotar el texto
+    const horimetroText = document.createElement('div');
+    horimetroText.textContent = 'HORIMETRO';
+    horimetroText.style.fontWeight = 'bold';
+    horimetroText.style.transform = 'rotate(-90deg)'; // Rotar el texto 90 grados
+    horimetroText.style.transformOrigin = 'center'; // Ajustar el punto de rotación
+    horimetroText.style.whiteSpace = 'nowrap'; // Evitar que el texto se corte en varias líneas
+    horimetroText.style.textAlign = 'center'; // Centrar el texto
+    horimetroText.style.display = 'flex';
+    horimetroText.style.justifyContent = 'center';
+    horimetroText.style.alignItems = 'center';
+    horimetroText.style.height = '100px'; // Ajusta la altura si es necesario
+
+    // Agregar el div rotado a la celda
+    horimetroCell.appendChild(horimetroText);
+
+    // Agregar la celda a la fila
     row.appendChild(horimetroCell);
 
 
+
+
     // Añade las 31 celdas de entrada para los días
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 31; i++) {
         const cell = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'text';
         input.id = `horimetrosInput${i + 1}`;
-        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl; margin-top: 10px;';
+        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl; text-orientation: mixed; margin-top: 10px;';
         cell.appendChild(input);
         row.appendChild(cell);
     }
@@ -157,7 +151,6 @@ function generateConductorRowCompressor() {
 
 // Llamar a las funciones al cargar el documento
 document.addEventListener("DOMContentLoaded", function () {
-    generateDayHeaders('checklist-table-Compressor');
     generateChecklistTableCompressor();
     generateConductorRowCompressor();
 });

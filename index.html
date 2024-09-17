@@ -146,6 +146,7 @@
                 <thead>
                     <tr>
                         <th class="item-column">Item</th>
+                        <th class="empty-column"></th> <!-- Columna vacía -->
                         <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                         <script>
                             for (let day = 1; day <= 31; day++) {
@@ -658,11 +659,11 @@
                 </td>
             </tr>
         </table>
-
         <table id="checklist-table-Compressor">
             <thead>
                 <tr>
                     <th class="item-column">Item</th>
+                    <th class="empty-column"></th> <!-- Columna vacía -->
                     <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                     <script>
                         for (let day = 1; day <= 31; day++) {
@@ -675,6 +676,7 @@
                 <!-- Las filas se generarán aquí dinámicamente con JavaScript -->
             </tbody>
         </table>
+
 
 
         <table>
@@ -965,6 +967,7 @@
             <thead>
                 <tr>
                     <th class="item-column">Item</th>
+                    <th class="empty-column"></th> <!-- Columna vacía -->
                     <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                     <script>
                         for (let day = 1; day <= 31; day++) {
@@ -1266,6 +1269,7 @@
             <thead>
                 <tr>
                     <th class="item-column">Item</th>
+                    <th class="empty-column"></th> <!-- Columna vacía -->
                     <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                     <script>
                         for (let day = 1; day <= 31; day++) {
@@ -1734,40 +1738,6 @@
             signatureHandler.saveSignature();
         }
 
-
-
-        // Convertir solo los inputs de Horímetro a spans antes de exportar
-        function convertHorimetroInputsToSpans(formId) {
-            const form = document.getElementById(formId);
-            const horimetroInputs = form.querySelectorAll('input[id^="horimetrosInput"]'); // Selecciona solo los inputs de Horímetro
-
-            horimetroInputs.forEach(input => {
-                const span = document.createElement('span');
-                span.textContent = input.value;
-                span.style.display = 'block';
-                span.style.transform = 'rotate(-90deg) translate(0, 20px)'; // Ajusta la rotación y posición
-                span.style.transformOrigin = 'center bottom'; // Ajusta el origen de transformación
-                span.style.whiteSpace = 'nowrap'; // Asegurarse de que no haya saltos de línea
-                span.style.width = '100%'; // Asegurar que el ancho sea el adecuado
-                span.style.textAlign = 'center';
-
-                input.parentNode.replaceChild(span, input);
-                input.originalElement = input; // Guardar el input original para restaurarlo después
-                input.replacedElement = span;
-            });
-        }
-
-        // Restaurar los inputs de Horímetro después de generar el PDF
-        function restoreHorimetroInputs(formId) {
-            const form = document.getElementById(formId);
-            const horimetroSpans = form.querySelectorAll('span');
-
-            horimetroSpans.forEach(span => {
-                if (span.originalElement) {
-                    span.parentNode.replaceChild(span.originalElement, span);
-                }
-            });
-        }
 
     </script>
     <script src="./js/exportToPDF.js" defer></script>

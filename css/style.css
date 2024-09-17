@@ -147,6 +147,9 @@ td {
     border: 1px solid #6564647b;
     text-align: center;
     padding: 4px;
+    white-space: normal;
+    /* Permitir que el texto se ajuste */
+    overflow-wrap: break-word;
     font-size: 9px;
 }
 
@@ -243,10 +246,11 @@ button {
 }
 
 .day-column {
-    width: 60px;
+    width: auto;
+    ;
     /* Ajustar el ancho de las columnas de los días */
     vertical-align: top;
-    padding: 0;
+    padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.338);
 }
 
@@ -284,7 +288,8 @@ button {
 
 
 .item-column {
-    width: 200px;
+    width: auto;
+    padding: 5px;
     /* Ajuste el ancho de la primera columna */
     color: black;
     font-size: 12px;
@@ -299,6 +304,8 @@ button {
     z-index: 2;
     /* Para que esté por encima de otras columnas */
 }
+
+
 
 
 
@@ -412,12 +419,12 @@ button {
     }
 
     .item-column {
-        width: 180px;
+        width: auto;
         /* Ajuste específico para tablets */
     }
 
     .day-column {
-        width: 60px;
+        width: auto;
         /* Ajuste el ancho de las columnas de los días */
     }
 
@@ -432,18 +439,35 @@ button {
         width: 100%;
         height: auto;
     }
+
+    .vehicle-info td {
+        font-size: 14px;
+        /* Ajustar el tamaño del texto */
+    }
+
+    .checklist-header,
+    .vehicle-info {
+        flex-direction: column;
+        /* Hacer que los elementos de la cabecera se apilen */
+    }
+
+    .checklist-header .header-info {
+        width: 100%;
+        /* Asegurarse que ocupe todo el ancho */
+    }
 }
 
 /* Para tablets en modo paisaje (horizontal) de 2000x1200 */
 @media (min-width: 1200px) and (max-width: 2000px) and (orientation: landscape) {
     body {
         padding: 20px;
+        font-size: 16px;
     }
 
     h1,
     h2 {
-        font-size: 2em;
-        padding: 20px;
+        font-size: 2.5em;
+
     }
 
     .header-info {
@@ -452,7 +476,7 @@ button {
     }
 
     .table-container {
-        overflow-x: hidden;
+        overflow-x: auto;
     }
 
     table {
@@ -465,19 +489,34 @@ button {
     }
 
     .day-column {
-        width: 60px;
-        /* Ajuste el ancho de las columnas de los días */
+        width: auto;
+        /* Ajustar dinámicamente */
     }
 
-    /* Ajustes para botones */
     .submit-button,
     .back-button {
-        width: 100%;
-        max-width: 400px;
+        width: 300px;
+        font-size: 1.2em;
     }
 
     .signature-container {
         width: 100%;
         height: auto;
+    }
+
+    .vehicle-info td {
+        font-size: 16px;
+        /* Aumentar un poco el tamaño del texto */
+    }
+
+    .checklist-header,
+    .vehicle-info {
+        flex-direction: row;
+        /* Colocar los elementos en línea horizontal */
+    }
+
+    .checklist-header .header-info {
+        width: 70%;
+        /* Ajustar el ancho para ocupar más espacio horizontal */
     }
 }
