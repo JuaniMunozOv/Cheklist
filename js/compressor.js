@@ -102,7 +102,7 @@ function generateChecklistTableCompressor() {
     });
 }
 
-// Función para generar la fila de CONDUCTOR y CHAPA
+/// Función para generar la fila de CONDUCTOR y CHAPA
 function generateConductorRowCompressor() {
     const checklistBody = document.getElementById('checklist-body-Compressor');
     const row = document.createElement('tr');
@@ -131,18 +131,23 @@ function generateConductorRowCompressor() {
     row.appendChild(conductorChapaCell);
 
     const horimetroCell = document.createElement('td');
+    horimetroCell.style.display = 'flex';
+    horimetroCell.style.alignItems = 'center';
+    horimetroCell.style.justifyContent = 'center';
     horimetroCell.innerHTML = `
-        <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 40px;margin-top:20px;">HORIMETRO</div>
-        <input type="text" style="width: 15px; height:70px; writing-mode: vertical-rl;">
+        <div style="transform: rotate(-90deg); white-space: nowrap; margin-right: 5px; margin-top: 20px;">HORIMETRO</div>
+        <input type="text" id="horimetrosInput" style="width: 15px; height: 70px; writing-mode: vertical-rl; margin-top: 10px;">
     `;
     row.appendChild(horimetroCell);
+
 
     // Añade las 31 celdas de entrada para los días
     for (let i = 0; i < 30; i++) {
         const cell = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'text';
-        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl;';
+        input.id = `horimetrosInput${i + 1}`;
+        input.style = 'width: 15px; height: 70px; writing-mode: vertical-rl; margin-top: 10px;';
         cell.appendChild(input);
         row.appendChild(cell);
     }
