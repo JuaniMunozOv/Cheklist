@@ -107,9 +107,6 @@ function generateChecklistTableSonda() {
         itemCell.style.backgroundColor = "#fff";
         row.appendChild(itemCell);
 
-        const emptyCell = document.createElement('td');
-        row.appendChild(emptyCell);
-
         for (let day = 1; day <= 31; day++) {
             const dayCell = document.createElement('td');
             const input = document.createElement('input');
@@ -150,32 +147,8 @@ function generateConductorRowSonda() {
     `;
     row.appendChild(conductorChapaCell);
 
-    const horimetroCell = document.createElement('td');
-
-    // Crear un contenedor div para alinear y rotar el texto
-    const horimetroText = document.createElement('div');
-    horimetroText.textContent = 'HORIMETRO';
-    horimetroText.style.fontWeight = 'bold';
-    horimetroText.style.transform = 'rotate(-90deg)'; // Rotar el texto 90 grados
-    horimetroText.style.transformOrigin = 'center'; // Ajustar el punto de rotación
-    horimetroText.style.whiteSpace = 'nowrap'; // Evitar que el texto se corte en varias líneas
-    horimetroText.style.textAlign = 'center'; // Centrar el texto
-    horimetroText.style.display = 'flex';
-    horimetroText.style.justifyContent = 'center';
-    horimetroText.style.alignItems = 'center';
-    horimetroText.style.height = '100px'; // Ajusta la altura si es necesario
-
-    // Agregar el div rotado a la celda
-    horimetroCell.appendChild(horimetroText);
-
-    // Agregar la celda a la fila
-    row.appendChild(horimetroCell);
-
-
-
-
     // Añade las 31 celdas de entrada para los días
-    for (let i = 0; i < 31; i++) {
+    for (let i = 1; i < 32; i++) {
         const cell = document.createElement('td');
         const input = document.createElement('input');
         input.type = 'text';

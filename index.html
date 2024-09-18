@@ -146,8 +146,6 @@
                 <thead>
                     <tr>
                         <th class="item-column">Item</th>
-                        <th class="empty-column"></th> <!-- Columna vacía -->
-                        <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                         <script>
                             for (let day = 1; day <= 31; day++) {
                                 document.write(`<th class="day-column">Día ${day}</th>`);
@@ -158,11 +156,12 @@
                 <tbody id="checklist-body-Caminhao">
                     <!-- Las filas se generarán aquí dinámicamente con JavaScript -->
                 </tbody>
-            </table>
-
-
-            <table>
-
+                <tr>
+                    <td colspan="118" class="header right"
+                        style="color: rgb(0, 0, 0); background-color: grey; border: 1px solid black; font-weight: bold; font-size: larger;">
+                        HORIMETRO
+                    </td>
+                </tr>
                 <td colspan="1" style="width: 100px; vertical-align: top; padding: 0; border: 1px solid black;">
 
                     <span style="font-weight: 300; font-size: 20px;width: 50%; margin-top: 5px;">NOME</span>
@@ -176,8 +175,10 @@
                         Assinatura
                     </button>
                 </td>
-
             </table>
+
+
+
 
             <!-- Modal de Firma -->
             <div id="signatureModalCAMINHÃO-SONDA"
@@ -413,11 +414,10 @@
                         <div style="height: 10%; border-bottom: 1px solid black; padding: 5px;">
                             <select id="conductorAuto" style="width: 50%; margin-top: 5px;"
                                 onchange="updateConductorName('conductorAuto', 'selectedConductorAuto')">
-                                <option value="Conductor">Conductor</option>
+                                <option value="Conductor"></option>
                                 <option value="Ildoson Almeida">Ildoson Almeida</option>
                                 <option value="Ivanildo Santarém">Ivanildo Santarém</option>
                                 <option value="Lecindio Soares">Lecindio Soares</option>
-                                <option value="Vaga Auxiliar">Vaga Auxiliar</option>
                                 <option value="Wilson Silva">Wilson Silva</option>
                                 <option value="Auricélio Santana">Auricélio Santana</option>
                                 <option value="Antonio Carlos Souza">Antonio Carlos Souza</option>
@@ -663,7 +663,6 @@
             <thead>
                 <tr>
                     <th class="item-column">Item</th>
-                    <th class="empty-column"></th> <!-- Columna vacía -->
                     <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                     <script>
                         for (let day = 1; day <= 31; day++) {
@@ -675,12 +674,12 @@
             <tbody id="checklist-body-Compressor">
                 <!-- Las filas se generarán aquí dinámicamente con JavaScript -->
             </tbody>
-        </table>
-
-
-
-        <table>
-
+            <tr>
+                <td colspan="118" class="header right"
+                    style="color: rgb(0, 0, 0); background-color: grey; border: 1px solid black; font-weight: bold; font-size: larger;">
+                    HORIMETRO
+                </td>
+            </tr>
             <td colspan="1" style="width: 100px; vertical-align: top; padding: 0; border: 1px solid black;">
 
                 <span style="font-weight: 300; font-size: 20px;width: 50%; margin-top: 5px;">NOME</span>
@@ -694,8 +693,8 @@
                     Assinatura
                 </button>
             </td>
-
         </table>
+
 
         <!-- Modal de Firma -->
         <div id="signatureModalCompressor"
@@ -708,8 +707,6 @@
                 <button onclick="saveSignatureCompressor()">Guardar Firma</button>
             </div>
         </div>
-
-
 
         <table class="formulario">
             <thead>
@@ -966,7 +963,6 @@
         <table id="checklist-table-Sonda">
             <thead>
                 <tr>
-                    <th class="item-column">Item</th>
                     <th class="empty-column"></th> <!-- Columna vacía -->
                     <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                     <script>
@@ -976,18 +972,21 @@
                     </script>
                 </tr>
             </thead>
+
             <tbody id="checklist-body-Sonda">
                 <!-- Las filas se generarán aquí dinámicamente con JavaScript -->
             </tbody>
-        </table>
-
-        <table>
+            <tr>
+                <td colspan="118" class="header right"
+                    style="color: rgb(0, 0, 0); background-color: grey; border: 1px solid black; font-weight: bold; font-size: larger;">
+                    HORIMETRO
+                </td>
+            </tr>
             <td colspan="1" style="width: 100px; vertical-align: top; padding: 0; border: 1px solid black;">
 
                 <span style="font-weight: 300; font-size: 20px;width: 50%; margin-top: 5px;">NOME</span>
 
             </td>
-
             <td colspan="100" style="text-align: center; vertical-align: middle; height: 150px; width: 100px;">
                 <button id="signatureButtonSonda"
                     onclick="openSignatureModal(this, 'signatureModalSonda', 'signatureCanvasSonda')"
@@ -1268,9 +1267,7 @@
         <table id="checklist-table-SondaRotativa">
             <thead>
                 <tr>
-                    <th class="item-column">Item</th>
                     <th class="empty-column"></th> <!-- Columna vacía -->
-                    <!-- Generar los encabezados de los días (1-31) dinámicamente con JavaScript -->
                     <script>
                         for (let day = 1; day <= 31; day++) {
                             document.write(`<th class="day-column">Día ${day}</th>`);
@@ -1281,9 +1278,12 @@
             <tbody id="checklist-body-SondaRotativa">
                 <!-- Las filas se generarán aquí dinámicamente con JavaScript -->
             </tbody>
-        </table>
-
-        <table>
+            <tr>
+                <td colspan="118" class="header right"
+                    style="color: rgb(0, 0, 0); background-color: grey; border: 1px solid black; font-weight: bold; font-size: larger;">
+                    HORIMETRO
+                </td>
+            </tr>
             <td colspan="1" style="width: 100px; vertical-align: top; padding: 0; border: 1px solid black;">
 
                 <span style="font-weight: 300; font-size: 20px;width: 50%; margin-top: 5px;">NOME</span>
@@ -1598,6 +1598,12 @@
         // Hack para forzar el reflow en iOS
         document.body.addEventListener('touchstart', function () { });
 
+        function updateConductorName(selectId, spanId) {
+            const selectElement = document.getElementById(selectId);
+            const spanElement = document.getElementById(spanId);
+            const selectedConductor = selectElement.options[selectElement.selectedIndex].text;
+            spanElement.textContent = selectedConductor;
+        }
 
         // Clase para manejar la firma
         class SignatureHandler {
